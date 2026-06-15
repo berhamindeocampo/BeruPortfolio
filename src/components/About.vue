@@ -2,6 +2,7 @@
   <section id="about" class="about-strip">
 
     <!-- LEFT: image/avatar side -->
+     <img src="./9d3201f4-588b-493a-beef-e1b172942115.jpg" alt="Berhamin de Ocampo">
     <div class="about-image-side">
       <div class="avatar-circle">
         <img

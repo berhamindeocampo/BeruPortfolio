@@ -60,12 +60,11 @@ export default {
         },
         {
           id: 3,
-          title: 'Project Three',
-          description: 'A mobile-first progressive web app that provides a seamless user experience across all devices.',
+          title: 'Beru Portfolio',
+          description: 'My portfolio.',
           icon: '📱',
-          tech: ['Vue.js', 'PWA', 'Firebase'],
-          github: 'https://github.com/berhamindeocampo',
-          demo: '#'
+          tech: ['Vue.js', 'HTML', 'JavaScript'],
+          github: 'https://github.com/berhamindeocampo/BeruPortfolio',
         }
       ]
     }
