@@ -53,7 +53,7 @@ export default {
   name: 'About',
   data() {
     return {
-      profileImg: './beruchisa.jpg'
+      profileImg: './beruchisa.jpg' // I hate fixing this bitch ass code
     }
   }
 }
