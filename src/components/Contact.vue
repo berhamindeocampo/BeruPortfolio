@@ -1,87 +1,96 @@
 <template>
-  <section id="contact" class="contact">
-    <div class="container">
-      <h2>Get In Touch</h2>
-      <p class="contact-intro">
-        I'm always interested in hearing about new projects and opportunities. Feel free to reach out!
-      </p>
-      
-      <div class="contact-content">
-        <div class="contact-form">
-          <form @submit.prevent="submitForm">
+  <section id="contact" class="contact-section">
+
+    <div class="section-header">
+      <h2>Connect &amp; Collaborate</h2>
+      <p>I'm always open to new projects and opportunities. Feel free to reach out!</p>
+    </div>
+
+    <div class="contact-layout">
+
+      <!-- FORM (WhiskerWash booking form style) -->
+      <div class="contact-form-wrap">
+        <form @submit.prevent="submitForm" class="contact-form">
+          <div class="form-row">
             <div class="form-group">
               <label for="name">Name</label>
-              <input 
-                v-model="form.name"
-                type="text" 
-                id="name" 
-                placeholder="Your name"
-                required
-              >
+              <input v-model="form.name" type="text" id="name" placeholder="Your name" required>
             </div>
-            
             <div class="form-group">
               <label for="email">Email</label>
-              <input 
-                v-model="form.email"
-                type="email" 
-                id="email" 
-                placeholder="your@email.com"
-                required
-              >
+              <input v-model="form.email" type="email" id="email" placeholder="your@email.com" required>
             </div>
-            
-            <div class="form-group">
-              <label for="subject">Subject</label>
-              <input 
-                v-model="form.subject"
-                type="text" 
-                id="subject" 
-                placeholder="Message subject"
-                required
-              >
-            </div>
-            
-            <div class="form-group">
-              <label for="message">Message</label>
-              <textarea 
-                v-model="form.message"
-                id="message" 
-                placeholder="Your message..."
-                rows="5"
-                required
-              ></textarea>
-            </div>
-            
-            <button type="submit" class="submit-btn">Send Message</button>
-            <p v-if="formMessage" :class="['form-message', formStatus]">
-              {{ formMessage }}
-            </p>
-          </form>
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input v-model="form.subject" type="text" id="subject" placeholder="What's this about?" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea v-model="form.message" id="message" placeholder="Your message..." rows="5" required></textarea>
+          </div>
+          <button type="submit" class="submit-btn">
+            Send Message <span>↗</span>
+          </button>
+          <div v-if="formMessage" :class="['form-toast', formStatus]">
+            {{ formMessage }}
+          </div>
+        </form>
+      </div>
+
+      <!-- INFO CARDS (WhiskerWash product card style) -->
+      <div class="contact-info">
+        <div class="info-card blue">
+          <div class="info-icon">📧</div>
+          <h3>Email</h3>
+          <a href="mailto:badeocampo28@gmail.com">badeocampo28@gmail.com</a>
         </div>
-        
-        <div class="contact-info">
-          <div class="info-item">
-            <h3>📧 Email</h3>
-            <a href="mailto:your-email@example.com">your-email@example.com</a>
-          </div>
-          
-          <div class="info-item">
-            <h3>🔗 Social Links</h3>
-            <div class="social-list">
-              <a href="https://github.com/macapagaljoshua123" target="_blank" rel="noopener">GitHub</a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
-              <a href="https://twitter.com" target="_blank" rel="noopener">Twitter</a>
-            </div>
-          </div>
-          
-          <div class="info-item">
-            <h3>📍 Location</h3>
-            <p>Your City, Your Country</p>
+        <div class="info-card yellow">
+          <div class="info-icon">📍</div>
+          <h3>Location</h3>
+          <p>San Miguel, Bulacan<br>Philippines</p>
+        </div>
+        <div class="info-card red">
+          <div class="info-icon">🔗</div>
+          <h3>Social Links</h3>
+          <div class="social-list">
+            <a href="https://github.com/berhamindeocampo" target="_blank" rel="noopener">GitHub ↗</a>
+            <a href="https://www.linkedin.com/in/berhamin-de-ocampo-b507a3404/" target="_blank" rel="noopener">LinkedIn ↗</a>
+            <a href="https://facebook.com/beruhamin" target="_blank" rel="noopener">Facebook ↗</a>
           </div>
         </div>
       </div>
+
     </div>
+
+    <!-- GALLERY GRID (WhiskerWash gallery style) -->
+    <div class="connect-grid">
+      <a href="https://github.com/berhamindeocampo" target="_blank" class="connect-tile">
+        <span class="tile-icon">🐙</span>
+        <span class="tile-label">GitHub</span>
+      </a>
+      <a href="https://www.linkedin.com/in/berhamin-de-ocampo-b507a3404/" target="_blank" class="connect-tile">
+        <span class="tile-icon">💼</span>
+        <span class="tile-label">LinkedIn</span>
+      </a>
+      <a href="https://facebook.com/beruhamin" target="_blank" class="connect-tile">
+        <span class="tile-icon">📘</span>
+        <span class="tile-label">Facebook</span>
+      </a>
+      <a href="mailto:badeocampo28@gmail.com" class="connect-tile" style="background: var(--blue-lt);">
+        <span class="tile-icon">✉️</span>
+        <span class="tile-label">Email Me</span>
+      </a>
+      <a href="https://whisker-wash.vercel.app" target="_blank" class="connect-tile" style="background: var(--yellow-lt);">
+        <span class="tile-icon">🐾</span>
+        <span class="tile-label">WhiskerWash Live</span>
+      </a>
+      <div class="connect-tile" style="background: var(--red-lt);">
+        <span class="tile-icon">📍</span>
+        <span class="tile-label">San Miguel, Bulacan PH</span>
+      </div>
+    </div>
+
   </section>
 </template>
 
@@ -90,44 +99,24 @@ export default {
   name: 'Contact',
   data() {
     return {
-      form: {
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
-      },
+      form: { name: '', email: '', subject: '', message: '' },
       formMessage: '',
       formStatus: ''
     }
   },
   methods: {
     submitForm() {
-      // Note: This is a placeholder. For production, integrate with a backend service
-      // or use services like Formspree, EmailJS, or Firebase
-      
       if (this.form.name && this.form.email && this.form.subject && this.form.message) {
-        console.log('Form submitted:', this.form)
-        
-        // Simulate form submission
         this.formStatus = 'success'
-        this.formMessage = '✓ Message sent successfully! Thank you for reaching out.'
-        
-        // Reset form after 2 seconds
-        setTimeout(() => {
-          this.resetForm()
-        }, 2000)
+        this.formMessage = '✓ Message sent! Thank you for reaching out.'
+        setTimeout(() => this.resetForm(), 3000)
       } else {
         this.formStatus = 'error'
-        this.formMessage = '✗ Please fill in all fields'
+        this.formMessage = '✗ Please fill in all fields.'
       }
     },
     resetForm() {
-      this.form = {
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
-      }
+      this.form = { name: '', email: '', subject: '', message: '' }
       this.formMessage = ''
       this.formStatus = ''
     }
@@ -136,194 +125,179 @@ export default {
 </script>
 
 <style scoped>
-.contact {
-  padding: 5rem 2rem;
-  background: #f8f9fa;
-  transition: background-color 0.3s;
+.contact-section {
+  padding: 72px 48px;
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  transition: background .3s, border-color .3s;
 }
 
-:deep(.dark-mode) .contact {
-  background: #1a1a1a;
+.section-header {
+  text-align: center;
+  margin-bottom: 52px;
 }
 
-.container {
-  max-width: 1200px;
+.section-header h2 {
+  font-family: 'Bayon', sans-serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  margin-bottom: 12px;
+}
+
+.section-header p {
+  color: var(--mid);
+  max-width: 480px;
   margin: 0 auto;
+  line-height: 1.7;
+  transition: color .3s;
 }
 
-h2 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  color: #007bff;
-  text-align: center;
-}
-
-.contact-intro {
-  text-align: center;
-  font-size: 1.1rem;
-  margin-bottom: 3rem;
-  color: #666;
-}
-
-:deep(.dark-mode) .contact-intro {
-  color: #ccc;
-}
-
-.contact-content {
+/* ── LAYOUT ─────────────────────────────────── */
+.contact-layout {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 28px;
+  margin-bottom: 36px;
 }
 
-.contact-form {
-  background: white;
-  padding: 2rem;
+/* ── FORM ───────────────────────────────────── */
+.contact-form-wrap {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 36px;
+  transition: background .3s, border-color .3s;
+}
+
+.contact-form { display: flex; flex-direction: column; gap: 18px; }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+
+label {
+  font-size: .85rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--mid);
+  transition: color .3s;
+}
+
+input, textarea {
+  background: var(--white);
+  border: 1.5px solid var(--border);
   border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s;
-}
-
-:deep(.dark-mode) .contact-form {
-  background: #2a2a2a;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-.form-group {
-  margin-bottom: 1.5rem;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-  color: #333;
-}
-
-:deep(.dark-mode) .form-group label {
-  color: #f0f0f0;
-}
-
-.form-group input,
-.form-group textarea {
-  width: 100%;
-  padding: 0.8rem;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  font-family: inherit;
-  font-size: 1rem;
-  background: white;
-  color: #333;
-  transition: border-color 0.3s;
-}
-
-:deep(.dark-mode) .form-group input,
-:deep(.dark-mode) .form-group textarea {
-  background: #333;
-  color: #f0f0f0;
-  border-color: #444;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
+  padding: 12px 16px;
+  font-family: 'Lato', sans-serif;
+  font-size: .95rem;
+  color: var(--ink);
   outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+  transition: border-color .2s, background .3s, color .3s;
+  resize: vertical;
 }
+
+input:focus, textarea:focus { border-color: var(--blue); }
 
 .submit-btn {
-  width: 100%;
-  padding: 0.8rem;
-  background: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--ink);
+  color: var(--cream);
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
   font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s;
+  padding: 14px 28px;
+  border-radius: 40px;
+  transition: background .2s, transform .2s;
+  align-self: flex-start;
 }
 
-.submit-btn:hover {
-  background: #0056b3;
-}
+.submit-btn:hover { background: var(--blue); transform: translateY(-2px); }
 
-.form-message {
-  margin-top: 1rem;
-  padding: 1rem;
-  border-radius: 5px;
-  text-align: center;
-}
-
-.form-message.success {
-  background: #d4edda;
-  color: #155724;
-  border: 1px solid #c3e6cb;
-}
-
-:deep(.dark-mode) .form-message.success {
-  background: #1a3a1a;
-  color: #90ee90;
-  border-color: #2d5a2d;
-}
-
-.form-message.error {
-  background: #f8d7da;
-  color: #721c24;
-  border: 1px solid #f5c6cb;
-}
-
-:deep(.dark-mode) .form-message.error {
-  background: #3a1a1a;
-  color: #ff6b6b;
-  border-color: #5a2d2d;
-}
-
-.contact-info {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.info-item {
-  background: white;
-  padding: 1.5rem;
+.form-toast {
+  padding: 12px 16px;
   border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s;
+  font-size: .88rem;
+  font-weight: 600;
 }
 
-:deep(.dark-mode) .info-item {
-  background: #2a2a2a;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
+.form-toast.success { background: #d4edda; color: #155724; }
+.form-toast.error   { background: var(--red-lt); color: var(--red); }
 
-.info-item h3 {
-  color: #007bff;
-  margin-bottom: 1rem;
-}
+/* ── INFO CARDS ─────────────────────────────── */
+.contact-info { display: flex; flex-direction: column; gap: 16px; }
 
-.info-item a {
-  color: #007bff;
-  transition: opacity 0.3s;
-}
-
-.info-item a:hover {
-  opacity: 0.7;
-}
-
-.social-list {
+.info-card {
+  border-radius: var(--radius);
+  padding: 24px;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 8px;
 }
 
-@media (max-width: 768px) {
-  h2 {
-    font-size: 2rem;
-  }
+.info-card.blue   { background: var(--blue-lt); }
+.info-card.yellow { background: var(--yellow-lt); }
+.info-card.red    { background: var(--red-lt); }
 
-  .contact-content {
-    grid-template-columns: 1fr;
-  }
+.info-icon { font-size: 1.6rem; }
+
+.info-card h3 {
+  font-family: 'Bayon', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: .02em;
+}
+
+.info-card a, .info-card p {
+  font-size: .9rem;
+  color: var(--mid);
+  line-height: 1.6;
+  transition: color .3s;
+}
+
+.info-card a:hover { color: var(--blue); }
+
+.social-list { display: flex; flex-direction: column; gap: 4px; }
+
+/* ── CONNECT GALLERY ────────────────────────── */
+.connect-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.connect-tile {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  aspect-ratio: 4/3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: transform .2s, background .3s, border-color .3s;
+}
+
+.connect-tile:hover { transform: scale(1.03); }
+
+.tile-icon { font-size: 2.4rem; }
+
+.tile-label {
+  font-size: .82rem;
+  font-weight: 700;
+  color: var(--mid);
+  transition: color .3s;
+}
+
+@media (max-width: 900px) {
+  .contact-section { padding: 48px 24px; }
+  .contact-layout { grid-template-columns: 1fr; }
+  .connect-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+  .form-row { grid-template-columns: 1fr; }
+  .connect-grid { grid-template-columns: 1fr; }
 }
 </style>

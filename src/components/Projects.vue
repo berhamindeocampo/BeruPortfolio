@@ -1,22 +1,37 @@
 <template>
-  <section id="projects" class="projects">
-    <div class="container">
-      <h2>Featured Projects</h2>
-      <div class="projects-grid">
-        <div v-for="project in projects" :key="project.id" class="project-card">
-          <div class="project-image">{{ project.icon }}</div>
-          <h3>{{ project.title }}</h3>
-          <p>{{ project.description }}</p>
-          <div class="project-tech">
-            <span v-for="tech in project.tech" :key="tech" class="tech-tag">{{ tech }}</span>
-          </div>
-          <div class="project-links">
-            <a v-if="project.github" :href="project.github" target="_blank" rel="noopener">GitHub</a>
-            <a v-if="project.demo" :href="project.demo" target="_blank" rel="noopener">Live Demo</a>
-          </div>
+  <section id="projects" class="projects-section">
+
+    <div class="section-header">
+      <h2>Pampering the Web with<br>Featured Projects</h2>
+      <p>A selection of projects I've built — from pet care apps to data tools.</p>
+    </div>
+
+    <div class="projects-grid">
+      <div
+        v-for="project in projects"
+        :key="project.id"
+        class="project-card"
+      >
+        <div class="project-image">
+          <img v-if="project.img" :src="project.img" :alt="project.title" class="project-img" />
+          <span v-else>{{ project.icon }}</span>
+        </div>
+        <h3>{{ project.title }}</h3>
+        <p>{{ project.description }}</p>
+        <div class="tech-pills">
+          <span v-for="tech in project.tech" :key="tech" class="pill">{{ tech }}</span>
+        </div>
+        <div class="project-links">
+          <a v-if="project.github" :href="project.github" target="_blank" rel="noopener" class="btn-outline">
+            GitHub <span>↗</span>
+          </a>
+          <a v-if="project.demo" :href="project.demo" target="_blank" rel="noopener" class="btn-outline btn-outline--filled">
+            Live Demo <span>↗</span>
+          </a>
         </div>
       </div>
     </div>
+
   </section>
 </template>
 
@@ -28,29 +43,28 @@ export default {
       projects: [
         {
           id: 1,
-          title: 'Project One',
-          description: 'A modern web application built with Vue.js and Node.js that showcases best practices in full-stack development.',
-          icon: '🚀',
-          tech: ['Vue.js', 'Node.js', 'MongoDB'],
-          github: 'https://github.com/macapagaljoshua123',
-          demo: '#'
+          title: 'Whisker Wash',
+          description: 'Pet care multi-page web application with booking, product catalog, AI chatbot powered by Google Gemini, blog, and testimonials.',
+          img: '/ChatGPT_Image_Jun_15__2026__01_28_57_PM-removebg-preview.png',
+          tech: ['HTML', 'CSS', 'JavaScript', 'Gemini AI'],
+          github: 'https://github.com/berhamindeocampo/WhiskerWash',
+          demo: 'https://whisker-wash.vercel.app'
         },
         {
           id: 2,
-          title: 'Project Two',
-          description: 'An interactive dashboard with real-time data visualization and user analytics powered by modern technologies.',
-          icon: '📊',
-          tech: ['React', 'D3.js', 'Express'],
-          github: 'https://github.com/macapagaljoshua123',
-          demo: '#'
+          title: 'Earthquake Event Recorder',
+          description: 'Python desktop app using Tkinter for logging and managing earthquake records. Auto-calculates safety alerts by magnitude and supports JSON import/export.',
+          img: '/earthquake.png',
+          tech: ['Python', 'Tkinter'],
+          github: 'https://github.com/berhamindeocampo/Earthquake-Event-Recorder'
         },
         {
           id: 3,
           title: 'Project Three',
-          description: 'A mobile-first progressive web app that provides seamless user experience across all devices.',
+          description: 'A mobile-first progressive web app that provides a seamless user experience across all devices.',
           icon: '📱',
           tech: ['Vue.js', 'PWA', 'Firebase'],
-          github: 'https://github.com/macapagaljoshua123',
+          github: 'https://github.com/berhamindeocampo',
           demo: '#'
         }
       ]
@@ -60,119 +74,146 @@ export default {
 </script>
 
 <style scoped>
-.projects {
-  padding: 5rem 2rem;
-  background: #f8f9fa;
-  transition: background-color 0.3s;
+.projects-section {
+  padding: 72px 48px;
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  transition: background .3s, border-color .3s;
 }
 
-:deep(.dark-mode) .projects {
-  background: #1a1a1a;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-h2 {
-  font-size: 2.5rem;
-  margin-bottom: 3rem;
-  color: #007bff;
+.section-header {
   text-align: center;
+  margin-bottom: 52px;
+}
+
+.section-header h2 {
+  font-family: 'Bayon', sans-serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  line-height: 1.1;
+  margin-bottom: 14px;
+}
+
+.section-header p {
+  color: var(--mid);
+  font-size: 1rem;
+  max-width: 480px;
+  margin: 0 auto;
+  line-height: 1.7;
+  transition: color .3s;
 }
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
 }
 
 .project-card {
-  background: white;
-  border-radius: 10px;
-  padding: 2rem;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-:deep(.dark-mode) .project-card {
-  background: #2a2a2a;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: transform .2s, box-shadow .2s, background .3s, border-color .3s;
 }
 
 .project-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-}
-
-:deep(.dark-mode) .project-card:hover {
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 36px rgba(0,0,0,.09);
 }
 
 .project-image {
-  font-size: 3rem;
-  margin-bottom: 1rem;
+  height: 160px;
+  border-radius: 10px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.5rem;
+  overflow: hidden;
+  transition: background .3s, border-color .3s;
 }
 
-.project-card h3 {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  color: #007bff;
+.project-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 8px;
 }
 
-.project-card p {
-  color: #666;
-  margin-bottom: 1.5rem;
-  line-height: 1.6;
+h3 {
+  font-family: 'Bayon', sans-serif;
+  font-size: 1.3rem;
+  letter-spacing: .02em;
 }
 
-:deep(.dark-mode) .project-card p {
-  color: #ccc;
+p {
+  font-size: .9rem;
+  color: var(--mid);
+  line-height: 1.65;
+  flex: 1;
+  transition: color .3s;
 }
 
-.project-tech {
+.tech-pills {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
+  gap: 6px;
 }
 
-.tech-tag {
-  background: #e7f3ff;
-  color: #0066cc;
-  padding: 0.3rem 0.8rem;
+.pill {
+  font-size: .75rem;
+  padding: 4px 12px;
   border-radius: 20px;
-  font-size: 0.85rem;
-}
-
-:deep(.dark-mode) .tech-tag {
-  background: #1a3a52;
-  color: #66b3ff;
+  background: var(--blue-lt);
+  color: var(--blue);
+  font-weight: 700;
+  transition: background .3s;
 }
 
 .project-links {
   display: flex;
-  gap: 1rem;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
-.project-links a {
-  color: #007bff;
-  font-weight: 500;
-  transition: opacity 0.3s;
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border: 1.5px solid var(--ink);
+  border-radius: 30px;
+  padding: 8px 18px;
+  font-size: .82rem;
+  font-weight: 700;
+  transition: background .2s, color .2s, border-color .2s;
 }
 
-.project-links a:hover {
-  opacity: 0.7;
+.btn-outline:hover {
+  background: var(--ink);
+  color: var(--cream);
 }
 
-@media (max-width: 768px) {
-  h2 {
-    font-size: 2rem;
-  }
+.btn-outline--filled {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: #fff;
+}
 
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
+.btn-outline--filled:hover {
+  background: #2a5bbf;
+  border-color: #2a5bbf;
+  color: #fff;
+}
+
+@media (max-width: 900px) {
+  .projects-section { padding: 48px 24px; }
+  .projects-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+  .projects-grid { grid-template-columns: 1fr; }
 }
 </style>

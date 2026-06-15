@@ -1,100 +1,152 @@
 <template>
-  <section id="about" class="about">
-    <div class="container">
-      <h2>About Me</h2>
-      <div class="about-content">
-        <div class="about-text">
-          <p>
-            Hi! I'm Joshua Macapagal, a passionate software developer with expertise in building modern web applications.
-            I specialize in full-stack development and have a strong interest in creating elegant solutions to complex problems.
-          </p>
-          <p>
-            With several years of experience, I've worked on various projects ranging from frontend interfaces to backend systems.
-            I'm always eager to learn new technologies and best practices in the industry.
-          </p>
-          <p>
-            When I'm not coding, you can find me exploring new tech trends, contributing to open source, or enjoying outdoor activities.
-          </p>
+  <section id="about" class="about-strip">
+
+    <!-- LEFT: image/avatar side -->
+    <div class="about-image-side">
+      <div class="avatar-circle">
+        <img
+          v-if="profileImg"
+          :src="profileImg"
+          alt="Berhamin de Ocampo"
+          class="profile-img"
+        />
+        <span v-else>👨‍💻</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: text side -->
+    <div class="about-text-side">
+      <h2>PASSIONATE CODE FOR EVERY PROJECT AND PIXEL.</h2>
+      <p>
+        Hi! I'm Berhamin de Ocampo — a software developer from San Miguel, Bulacan, Philippines.
+        I specialize in front-end development and love crafting elegant solutions to complex problems.
+      </p>
+      <p>
+        When I'm not coding, you'll find me exploring new tech trends, contributing to open source,
+        or enjoying the outdoors.
+      </p>
+      <a href="https://github.com/berhamindeocampo" target="_blank" class="btn-primary">
+        View GitHub <span>↗</span>
+      </a>
+
+      <div class="stats-row">
+        <div class="stat">
+          <h3>2+</h3>
+          <p>Public Repos</p>
         </div>
-        <div class="about-image">
-          <div class="placeholder-avatar">📷</div>
+        <div class="stat">
+          <h3>2</h3>
+          <p>Years Coding</p>
+        </div>
+        <div class="stat">
+          <h3>100%</h3>
+          <p>Passion</p>
         </div>
       </div>
     </div>
+
   </section>
 </template>
 
 <script>
 export default {
-  name: 'About'
+  name: 'About',
+  data() {
+    return {
+      profileImg: '/9d3201f4-588b-493a-beef-e1b172942115.jpg'
+    }
+  }
 }
 </script>
 
 <style scoped>
-.about {
-  padding: 5rem 2rem;
-  background: white;
-  transition: background-color 0.3s;
-}
-
-:deep(.dark-mode) .about {
-  background: #2a2a2a;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-h2 {
-  font-size: 2.5rem;
-  margin-bottom: 3rem;
-  color: #007bff;
-  text-align: center;
-}
-
-.about-content {
+.about-strip {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  align-items: center;
+  border-top: 1px solid var(--border);
+  transition: border-color .3s;
 }
 
-.about-text p {
-  margin-bottom: 1.5rem;
-  line-height: 1.8;
-  font-size: 1.1rem;
-}
-
-.about-image {
+.about-image-side {
+  background: var(--white);
+  padding: 48px;
   display: flex;
+  align-items: center;
   justify-content: center;
+  border-right: 1px solid var(--border);
+  min-height: 420px;
+  transition: background .3s, border-color .3s;
 }
 
-.placeholder-avatar {
-  width: 250px;
-  height: 250px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+.avatar-circle {
+  width: 220px;
+  height: 220px;
   border-radius: 50%;
+  background: var(--yellow-lt);
+  border: 4px solid var(--yellow);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 5rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  transition: background .3s;
 }
 
-@media (max-width: 768px) {
-  .about-content {
-    grid-template-columns: 1fr;
-  }
+.profile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
-  h2 {
-    font-size: 2rem;
-  }
+.about-text-side {
+  padding: 52px 56px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  justify-content: center;
+}
 
-  .placeholder-avatar {
-    width: 200px;
-    height: 200px;
+h2 {
+  font-family: 'Bayon', sans-serif;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  line-height: 1.1;
+}
+
+p {
+  color: var(--mid);
+  line-height: 1.75;
+  font-size: 1rem;
+  transition: color .3s;
+}
+
+.stats-row {
+  display: flex;
+  gap: 32px;
+  margin-top: 16px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+.stat h3 {
+  font-family: 'Bayon', sans-serif;
+  font-size: 2.2rem;
+  color: var(--blue);
+}
+
+.stat p {
+  font-size: .82rem;
+  color: var(--mid);
+  margin-top: 2px;
+}
+
+@media (max-width: 900px) {
+  .about-strip { grid-template-columns: 1fr; }
+  .about-image-side {
+    min-height: 260px;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
   }
+  .about-text-side { padding: 36px 24px; }
+  .stats-row { flex-wrap: wrap; gap: 20px; }
 }
 </style>
