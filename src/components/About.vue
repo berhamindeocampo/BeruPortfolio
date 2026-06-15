@@ -53,7 +53,7 @@ export default {
   name: 'About',
   data() {
     return {
-      profileImg: './9d3201f4-588b-493a-beef-e1b172942115.jpg'
+      profileImg: './beruchisa.jpg'
     }
   }
 }
