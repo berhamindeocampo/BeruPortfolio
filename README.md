@@ -1,4 +1,4 @@
-# Joshua Macapagal - Portfolio
+# Berhamin de Ocampo - Portfolio
 
 A modern, responsive portfolio website built with **Vue 3** and **Vite**. This template showcases your projects, skills, and provides a way for visitors to get in touch.
 
