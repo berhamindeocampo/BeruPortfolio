@@ -16,7 +16,7 @@
       <div class="role-card yellow">
         <div class="role-icon">🐍</div>
         <h3>Backend</h3>
-        <p>APIs, databases, and server-side logic with Python &amp; PHP.</p>
+        <p>APIs, databases, and server-side logic &amp; PHP.</p>
       </div>
       <div class="role-card red">
         <div class="role-icon">🔧</div>
@@ -63,7 +63,6 @@ export default {
         {
           name: 'Backend',
           skills: [
-            { name: 'Python', level: 80 },
             { name: 'PHP', level: 72 },
             { name: 'MySQL', level: 70 },
           ]
