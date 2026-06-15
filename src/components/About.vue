@@ -53,7 +53,7 @@ export default {
   name: 'About',
   data() {
     return {
-      profileImg: '/beruchisa.jpg' // SDHKJFHKSDJBVKJSBVKJSBKJ, ITS BCS OF THE PERIOD THAT WEB DONT RECOGNIZE!!!!!!!!!! AND I TYPO'ED GIR COMMIT BLAH BLAH INSTEAD OF THE MF GIT
+      profileImg: 'img/beruchisa.jpg' // SDHKJFHKSDJBVKJSBVKJSBKJ, ITS BCS OF THE PERIOD THAT WEB DONT RECOGNIZE!!!!!!!!!! AND I TYPO'ED GIR COMMIT BLAH BLAH INSTEAD OF THE MF GIT
     }
   }
 }
