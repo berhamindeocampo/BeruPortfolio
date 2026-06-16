@@ -1,36 +1,39 @@
 <template>
   <section id="contact" class="contact-section">
-
     <div class="section-header">
       <h2>Connect &amp; Collaborate</h2>
       <p>I'm always open to new projects and opportunities. Feel free to reach out!</p>
     </div>
 
     <div class="contact-layout">
-     <form action="https://formspree.io/f/mnjyraya" method="POST" class="contact-form">
-  <div class="form-row">
-    <div class="form-group">
-      <label for="name">Name</label>
-      <input type="text" name="name" id="name" placeholder="Your name" required>
-    </div>
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input type="email" name="email" id="email" placeholder="your@email.com" required>
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="subject">Subject</label>
-    <input type="text" name="subject" id="subject" placeholder="What's this about?" required>
-  </div>
-  <div class="form-group">
-    <label for="message">Message</label>
-    <textarea name="message" id="message" placeholder="Your message..." rows="5" required></textarea>
-  </div>
-  
-  <button type="submit" class="submit-btn">
-    Send Message <span>↗</span>
-  </button>
-</form>
+      <form @submit.prevent="submitForm" class="contact-form-wrap">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input v-model="form.name" type="text" id="name" placeholder="Your name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input v-model="form.email" type="email" id="email" placeholder="your@email.com" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="subject">Subject</label>
+          <input v-model="form.subject" type="text" id="subject" placeholder="What's this about?" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea v-model="form.message" id="message" placeholder="Your message..." rows="5" required></textarea>
+        </div>
+        
+        <button type="submit" :disabled="isSubmitting" class="submit-btn">
+          {{ isSubmitting ? 'Sending...' : 'Send Message ↗' }}
+        </button>
+
+        <div v-if="formMessage" :class="['form-toast', formStatus]">
+          {{ formMessage }}
+        </div>
+      </form>
 
       <div class="contact-info">
         <div class="info-card blue">
@@ -53,37 +56,7 @@
           </div>
         </div>
       </div>
-
     </div>
-
-    <!-- GALLERY GRID (WhiskerWash gallery style) -->
-    <div class="connect-grid">
-      <a href="https://github.com/berhamindeocampo" target="_blank" class="connect-tile">
-        <span class="tile-icon">🐙</span>
-        <span class="tile-label">GitHub</span>
-      </a>
-      <a href="https://www.linkedin.com/in/berhamin-de-ocampo-b507a3404/" target="_blank" class="connect-tile">
-        <span class="tile-icon">💼</span>
-        <span class="tile-label">LinkedIn</span>
-      </a>
-      <a href="https://facebook.com/beruhamin" target="_blank" class="connect-tile">
-        <span class="tile-icon">📘</span>
-        <span class="tile-label">Facebook</span>
-      </a>
-      <a href="mailto:badeocampo28@gmail.com" class="connect-tile" style="background: var(--blue-lt);">
-        <span class="tile-icon">✉️</span>
-        <span class="tile-label">Email Me</span>
-      </a>
-      <a href="https://whiskerwash.vercel.app" target="_blank" class="connect-tile" style="background: var(--yellow-lt);">
-        <span class="tile-icon">🐾</span>
-        <span class="tile-label">WhiskerWash Live</span>
-      </a>
-      <div class="connect-tile" style="background: var(--red-lt);">
-        <span class="tile-icon">📍</span>
-        <span class="tile-label">San Miguel, Bulacan PH</span>
-      </div>
-    </div>
-
   </section>
 </template>
 
@@ -93,26 +66,37 @@ export default {
   data() {
     return {
       form: { name: '', email: '', subject: '', message: '' },
+      isSubmitting: false,
       formMessage: '',
       formStatus: ''
     }
   },
-// Inside your Contact.vue <script>
 methods: {
-  submitForm() {
-    // Basic validation check
-    if (this.form.name && this.form.email && this.form.subject && this.form.message) {
-      this.formStatus = 'success';
-      this.formMessage = '✓ Message sent! Thank you for reaching out.'; // This text appears in your UI
-      
-      // Clear the form after a delay
-      setTimeout(() => this.resetForm(), 3000);
-    } else {
-      this.formStatus = 'error';
-      this.formMessage = '✗ Please fill in all fields.'; // This text appears in your UI
+    async submitForm() {
+      this.isSubmitting = true;
+      try {
+        const response = await fetch('https://formspree.io/f/mnjyraya', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(this.form)
+        });
+
+        if (response.ok) {
+          this.formStatus = 'success';
+          this.formMessage = '✓ Message sent! Thank you for reaching out.';
+          this.form = { name: '', email: '', subject: '', message: '' }; // Reset fields
+        } else {
+          throw new Error('Submission failed');
+        }
+      } catch (error) {
+        this.formStatus = 'error';
+        this.formMessage = '✗ Oops! There was a problem sending your message.';
+      } finally {
+        this.isSubmitting = false;
+        setTimeout(() => { this.formMessage = ''; this.formStatus = ''; }, 5000);
+      }
     }
   }
-}
 }
 </script>
 
@@ -157,6 +141,9 @@ methods: {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
   transition: background .3s, border-color .3s;
 }
 
@@ -209,17 +196,20 @@ input:focus, textarea:focus { border-color: var(--blue); }
 .submit-btn:hover { background: var(--blue); transform: translateY(-2px); }
 
 .form-toast {
-position: fixed; /* Fixes it to the screen */
-  bottom: 20px;    /* Positions it at the bottom */
-  right: 20px;     /* Positions it to the right */
-  z-index: 1000;   /* Keeps it above all other elements */
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
   padding: 16px 24px;
   border-radius: 8px;
-  background: var(--white);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15); /* Adds a native-style shadow */
-  border: 1px solid var(--border);
-  transition: transform 0.3s ease;
+  background-color: #333; /* Use a color consistent with WhiskerWash */
+  color: white;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: opacity 0.3s ease;
+  z-index: 1000;
 }
+
+.form-toast.success { background-color: #4CAF50; } /* Subtle success green */
+.form-toast.error { background-color: #F44336; }   /* Subtle error red */
 
 .form-toast.success { background: #d4edda; color: #155724; }
 .form-toast.error   { background: var(--red-lt); color: var(--red); }
