@@ -9,34 +9,30 @@
     <div class="contact-layout">
 
       <!-- FORM (WhiskerWash booking form style) -->
-      <div class="contact-form-wrap">
-        <form @submit.prevent="submitForm" class="contact-form">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="name">Name</label>
-              <input v-model="form.name" type="text" id="name" placeholder="Your name" required>
-            </div>
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input v-model="form.email" type="email" id="email" placeholder="your@email.com" required>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="subject">Subject</label>
-            <input v-model="form.subject" type="text" id="subject" placeholder="What's this about?" required>
-          </div>
-          <div class="form-group">
-            <label for="message">Message</label>
-            <textarea v-model="form.message" id="message" placeholder="Your message..." rows="5" required></textarea>
-          </div>
-          <button type="submit" class="submit-btn">
-            Send Message <span>↗</span>
-          </button>
-          <div v-if="formMessage" :class="['form-toast', formStatus]">
-            {{ formMessage }}
-          </div>
-        </form>
-      </div>
+     <form action="https://formspree.io/f/mnjyraya" method="POST" class="contact-form">
+  <div class="form-row">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" name="name" id="name" placeholder="Your name" required>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" name="email" id="email" placeholder="your@email.com" required>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="subject">Subject</label>
+    <input type="text" name="subject" id="subject" placeholder="What's this about?" required>
+  </div>
+  <div class="form-group">
+    <label for="message">Message</label>
+    <textarea name="message" id="message" placeholder="Your message..." rows="5" required></textarea>
+  </div>
+  
+  <button type="submit" class="submit-btn">
+    Send Message <span>↗</span>
+  </button>
+</form>
 
       <!-- INFO CARDS (WhiskerWash product card style) -->
       <div class="contact-info">

@@ -18,7 +18,7 @@
     <div class="about-text-side">
       <h2>PASSIONATE CODE FOR EVERY PROJECT AND PIXEL.</h2>
       <p>
-        Hi! I'm Berhamin de Ocampo — a software developer from San Miguel, Bulacan, Philippines.
+        Hi! I'm Berhamin de Ocampo! a software developer from San Miguel, Bulacan, Philippines.
         I specialize in front-end development and love crafting elegant solutions to complex problems.
       </p>
       <a href="https://github.com/berhamindeocampo" target="_blank" class="btn-primary">
