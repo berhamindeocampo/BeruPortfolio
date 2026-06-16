@@ -7,8 +7,6 @@
     </div>
 
     <div class="contact-layout">
-
-      <!-- FORM (WhiskerWash booking form style) -->
      <form action="https://formspree.io/f/mnjyraya" method="POST" class="contact-form">
   <div class="form-row">
     <div class="form-group">
@@ -34,7 +32,6 @@
   </button>
 </form>
 
-      <!-- INFO CARDS (WhiskerWash product card style) -->
       <div class="contact-info">
         <div class="info-card blue">
           <div class="info-icon">📧</div>
@@ -100,23 +97,22 @@ export default {
       formStatus: ''
     }
   },
-  methods: {
-    submitForm() {
-      if (this.form.name && this.form.email && this.form.subject && this.form.message) {
-        this.formStatus = 'success'
-        this.formMessage = '✓ Message sent! Thank you for reaching out.'
-        setTimeout(() => this.resetForm(), 3000)
-      } else {
-        this.formStatus = 'error'
-        this.formMessage = '✗ Please fill in all fields.'
-      }
-    },
-    resetForm() {
-      this.form = { name: '', email: '', subject: '', message: '' }
-      this.formMessage = ''
-      this.formStatus = ''
+// Inside your Contact.vue <script>
+methods: {
+  submitForm() {
+    // Basic validation check
+    if (this.form.name && this.form.email && this.form.subject && this.form.message) {
+      this.formStatus = 'success';
+      this.formMessage = '✓ Message sent! Thank you for reaching out.'; // This text appears in your UI
+      
+      // Clear the form after a delay
+      setTimeout(() => this.resetForm(), 3000);
+    } else {
+      this.formStatus = 'error';
+      this.formMessage = '✗ Please fill in all fields.'; // This text appears in your UI
     }
   }
+}
 }
 </script>
 
@@ -213,10 +209,16 @@ input:focus, textarea:focus { border-color: var(--blue); }
 .submit-btn:hover { background: var(--blue); transform: translateY(-2px); }
 
 .form-toast {
-  padding: 12px 16px;
-  border-radius: 10px;
-  font-size: .88rem;
-  font-weight: 600;
+position: fixed; /* Fixes it to the screen */
+  bottom: 20px;    /* Positions it at the bottom */
+  right: 20px;     /* Positions it to the right */
+  z-index: 1000;   /* Keeps it above all other elements */
+  padding: 16px 24px;
+  border-radius: 8px;
+  background: var(--white);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15); /* Adds a native-style shadow */
+  border: 1px solid var(--border);
+  transition: transform 0.3s ease;
 }
 
 .form-toast.success { background: #d4edda; color: #155724; }
