@@ -51,13 +51,6 @@
     <footer class="footer">
       <div class="footer-mid">
         <div class="footer-logo">Berhamin<br>de Ocampo <span class="paw">✦</span></div>
-        <nav class="footer-nav">
-          <a @click="goTo('about')">About</a>
-          <a @click="goTo('projects')">Projects</a>
-          <a @click="goTo('skills')">Skills</a>
-          <a @click="goTo('contact')">Contact</a>
-        </nav>
-        <a class="btn-primary" @click="goTo('contact')">Contact Me ↗</a>
       </div>
       <div class="footer-bottom">
         <p>© {{ currentYear }} Berhamin de Ocampo</p>
