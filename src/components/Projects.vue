@@ -45,8 +45,7 @@ export default {
           id: 1,
           title: 'Whisker Wash',
           description: 'Pet care multi-page web application with booking, product catalog, AI chatbot powered by Google Gemini, blog, and testimonials.',
-          img: 'public/img/ChatGPT_Image_Jun_15__2026__01_28_57_PM-removebg-preview.png',
-          tech: ['HTML', 'CSS', 'JavaScript', 'Gemini AI'],
+          img: '/img/whisker.png',
           github: 'https://github.com/berhamindeocampo/WhiskerWash',
           demo: 'https://whisker-wash.vercel.app'
         },
@@ -54,7 +53,7 @@ export default {
           id: 2,
           title: 'Earthquake Event Recorder',
           description: 'Python desktop app using Tkinter for logging and managing earthquake records. Auto-calculates safety alerts by magnitude and supports JSON import/export.',
-          img: 'public/img/earthquake.png',
+          img: '/img/earthquake.png',
           tech: ['Python', 'Tkinter'],
           github: 'https://github.com/berhamindeocampo/Earthquake-Event-Recorder'
         },

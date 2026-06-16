@@ -21,10 +21,6 @@
         Hi! I'm Berhamin de Ocampo — a software developer from San Miguel, Bulacan, Philippines.
         I specialize in front-end development and love crafting elegant solutions to complex problems.
       </p>
-      <p>
-        When I'm not coding, you'll find me exploring new tech trends, contributing to open source,
-        or enjoying the outdoors.
-      </p>
       <a href="https://github.com/berhamindeocampo" target="_blank" class="btn-primary">
         View GitHub <span>↗</span>
       </a>
@@ -53,7 +49,7 @@ export default {
   name: 'About',
   data() {
     return {
-      profileImg: 'public/img/beruchisa.jpg' // SDHKJFHKSDJBVKJSBVKJSBKJ, ITS BCS OF THE PERIOD THAT WEB DONT RECOGNIZE!!!!!!!!!! AND I TYPO'ED GIR COMMIT BLAH BLAH INSTEAD OF THE MF GIT
+      profileImg: '/img/beruchisa.jpg'
     }
   }
 }
