@@ -48,7 +48,7 @@ export default {
           img: '/img/whisker.png',
           tech: ['HTML', 'CSS', 'JavaScript', 'Gemini API'],
           github: 'https://github.com/berhamindeocampo/WhiskerWash',
-          demo: 'https://whisker-wash.vercel.app'
+          demo: 'https://whiskerwash.vercel.app'
         },
         {
           id: 2,
