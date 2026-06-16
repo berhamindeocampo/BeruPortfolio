@@ -111,6 +111,9 @@ export default {
   background: var(--cream);
   border: 1px solid var(--border);
   border-radius: var(--radius);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   padding: 28px;
   display: flex;
   flex-direction: column;
@@ -210,7 +213,8 @@ p {
 
 @media (max-width: 900px) {
   .projects-section { padding: 48px 24px; }
-  .projects-grid { grid-template-columns: 1fr 1fr; }
+  .projects-grid { grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr; gap: 16px; }
 }
 @media (max-width: 560px) {
   .projects-grid { grid-template-columns: 1fr; }
