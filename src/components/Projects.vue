@@ -213,10 +213,11 @@ p {
 
 @media (max-width: 900px) {
   .projects-section { padding: 48px 24px; }
-  .projects-grid { grid-template-columns: 1fr 1fr;
-  grid-template-columns: 1fr; gap: 16px; }
+  .projects-grid { grid-template-columns: 1fr; gap: 16px; }
 }
-@media (max-width: 560px) {
-  .projects-grid { grid-template-columns: 1fr; }
+
+.project-card {
+  width: 100%;
+  box-sizing: border-box;
 }
 </style>

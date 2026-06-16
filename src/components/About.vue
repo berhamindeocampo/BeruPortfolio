@@ -140,8 +140,8 @@ p {
   .about-strip { grid-template-columns: 1fr; }
 
   .avatar-circle {
-    width: 450px; /* Smaller size for mobile */
-    height: 450px;
+    width: 300px; 
+    height: 300px;
   }
 
   .about-image-side {

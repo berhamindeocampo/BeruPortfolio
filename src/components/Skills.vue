@@ -214,9 +214,9 @@ export default {
 @media (max-width: 900px) {
   .skills-section { padding: 48px 24px; }
   .role-cards { grid-template-columns: 1fr 1fr; }
-  .skills-grid { grid-template-columns: 1fr 1fr; padding: 24px; }
+  .skills-grid { grid-template-columns: 1fr 1fr; padding: 20px; }
 }
-@media (max-width: 560px) {
+@media (max-width: 480px) {
   .role-cards { grid-template-columns: 1fr; }
   .skills-grid { grid-template-columns: 1fr; }
 }

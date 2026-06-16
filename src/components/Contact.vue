@@ -291,10 +291,10 @@ input:focus, textarea:focus { border-color: var(--blue); }
   transition: color .3s;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 768px) {
   .contact-section { padding: 48px 24px; }
   .contact-layout { grid-template-columns: 1fr; }
-  .connect-grid { grid-template-columns: 1fr 1fr; }
+  .connect-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 560px) {
   .form-row { grid-template-columns: 1fr; }
