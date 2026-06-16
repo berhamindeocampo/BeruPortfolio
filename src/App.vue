@@ -6,8 +6,8 @@
       <div class="logo-text">Berhamin<span class="dot">.</span></div>
       <div class="header-actions">
         <button class="theme-toggle" @click="toggleDarkMode" :aria-label="darkMode ? 'Light Mode' : 'Dark Mode'">
-          <span class="sun">☀️</span>
-          <span class="moon">🌙</span>
+          <img src="/sun.svg" class="sun">
+          <img src="/moon.svg" class="moon">
         </button>
         <button class="hamburger-btn" @click="navOpen = !navOpen" aria-label="Open menu">
           <span></span><span></span><span></span>

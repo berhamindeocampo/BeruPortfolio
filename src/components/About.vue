@@ -53,7 +53,7 @@ export default {
   name: 'About',
   data() {
     return {
-      profileImg: 'img/beruchisa.jpg' // SDHKJFHKSDJBVKJSBVKJSBKJ, ITS BCS OF THE PERIOD THAT WEB DONT RECOGNIZE!!!!!!!!!! AND I TYPO'ED GIR COMMIT BLAH BLAH INSTEAD OF THE MF GIT
+      profileImg: 'public/img/beruchisa.jpg' // SDHKJFHKSDJBVKJSBVKJSBKJ, ITS BCS OF THE PERIOD THAT WEB DONT RECOGNIZE!!!!!!!!!! AND I TYPO'ED GIR COMMIT BLAH BLAH INSTEAD OF THE MF GIT
     }
   }
 }
@@ -68,12 +68,12 @@ export default {
 }
 
 .about-image-side {
-  background: var(--white);
+  background: #FFFAEF;
   padding: 48px;
+  object-fit: cover;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-right: 1px solid var(--border);
   min-height: 420px;
   transition: background .3s, border-color .3s;
 }
@@ -99,11 +99,12 @@ export default {
 }
 
 .about-text-side {
+  background: #FFFAEF;
   padding: 52px 56px;
   display: flex;
   flex-direction: column;
   gap: 18px;
-  justify-content: center;
+  justify-content: center;  
 }
 
 h2 {
