@@ -46,6 +46,7 @@ export default {
           title: 'Whisker Wash',
           description: 'Pet care multi-page web application with booking, product catalog, AI chatbot powered by Google Gemini, blog, and testimonials.',
           img: '/img/whisker.png',
+          tech: ['HTML', 'CSS', 'JavaScript', 'Gemini API'],
           github: 'https://github.com/berhamindeocampo/WhiskerWash',
           demo: 'https://whisker-wash.vercel.app'
         },

@@ -64,7 +64,7 @@ export default {
 }
 
 .about-image-side {
-  background: #FFFAEF;
+  background: var(--cream);
   padding: 48px;
   object-fit: cover;
   display: flex;
@@ -75,8 +75,8 @@ export default {
 }
 
 .avatar-circle {
-  width: 220px;
-  height: 220px;
+  width: 500px;
+  height: 500px;
   border-radius: 50%;
   background: var(--yellow-lt);
   border: 4px solid var(--yellow);
@@ -95,7 +95,7 @@ export default {
 }
 
 .about-text-side {
-  background: #FFFAEF;
+  background: var(--cream);
   padding: 52px 56px;
   display: flex;
   flex-direction: column;
@@ -138,6 +138,12 @@ p {
 
 @media (max-width: 900px) {
   .about-strip { grid-template-columns: 1fr; }
+
+  .avatar-circle {
+    width: 450px; /* Smaller size for mobile */
+    height: 450px;
+  }
+
   .about-image-side {
     min-height: 260px;
     border-right: none;

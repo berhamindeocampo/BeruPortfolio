@@ -1,7 +1,6 @@
 <template>
   <div :class="{ 'dark-mode': darkMode }">
 
-    <!-- HEADER -->
     <header class="header">
       <div class="logo-text">Berhamin<span class="dot">.</span></div>
       <div class="header-actions">
@@ -15,7 +14,6 @@
       </div>
     </header>
 
-    <!-- NAV OVERLAY -->
     <div class="nav-overlay" :class="{ open: navOpen }" @click.self="navOpen = false">
       <nav class="overlay-nav">
         <ul>
@@ -27,7 +25,6 @@
       </nav>
     </div>
 
-    <!-- HERO -->
     <section class="hero">
       <div class="hero-top">
         <div class="hero-icon-circle">👨‍💻</div>
@@ -51,25 +48,7 @@
       <Contact ref="contact" />
     </main>
 
-    <!-- FOOTER -->
     <footer class="footer">
-      <div class="footer-top">
-        <div class="footer-newsletter">
-          <h2>Let's Work<br>Together <span class="paw">✦</span></h2>
-        </div>
-        <div class="footer-right">
-          <div class="email-bar">
-            <input type="email" placeholder="Your email address" v-model="newsletterEmail">
-            <button @click="subscribeNewsletter">Send ↗</button>
-          </div>
-          <div class="social-icons">
-            <a href="https://www.linkedin.com/in/berhamin-de-ocampo-b507a3404/" target="_blank" class="social-icon">in</a>
-            <a href="mailto:badeocampo28@gmail.com" class="social-icon">✉</a>
-            <a href="https://github.com/berhamindeocampo" target="_blank" class="social-icon">⑆</a>
-            <a href="https://facebook.com/beruhamin" target="_blank" class="social-icon">f</a>
-          </div>
-        </div>
-      </div>
       <div class="footer-mid">
         <div class="footer-logo">Berhamin<br>de Ocampo <span class="paw">✦</span></div>
         <nav class="footer-nav">
@@ -133,7 +112,6 @@ export default {
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Bayon&family=Lato:wght@300;400;700;900&display=swap');
 
-/* ── GLOBAL TOKENS ─────────────────────────────────────── */
 :root {
   --cream:    #F7F3EC;
   --white:    #FFFFFF;
@@ -166,7 +144,6 @@ a { text-decoration: none; color: inherit; cursor: pointer; }
 button { cursor: pointer; border: none; background: none; font-family: inherit; }
 img { display: block; max-width: 100%; }
 
-/* ── HEADER ──────────────────────────────────────────────── */
 .header {
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
   display: flex; align-items: center; justify-content: space-between;
@@ -187,7 +164,7 @@ img { display: block; max-width: 100%; }
 .theme-toggle .sun { display: inline; }
 .theme-toggle .moon { display: none; }
 .dark-mode .theme-toggle .sun { display: none; }
-.dark-mode .theme-toggle .moon { display: inline; }
+.dark-mode .theme-toggle .moon { display: inline; filter: invert(1); }
 .hamburger-btn {
   width: 40px; height: 40px; border-radius: 50%;
   background: var(--ink); display: flex; flex-direction: column;
@@ -196,7 +173,6 @@ img { display: block; max-width: 100%; }
 }
 .hamburger-btn span { display: block; width: 18px; height: 2px; background: var(--cream); border-radius: 2px; }
 
-/* ── NAV OVERLAY ─────────────────────────────────────────── */
 .nav-overlay {
   position: fixed; inset: 0; z-index: 199;
   background: var(--ink); opacity: 0; pointer-events: none;
@@ -212,7 +188,6 @@ img { display: block; max-width: 100%; }
 }
 .overlay-nav a:hover { color: var(--yellow); }
 
-/* ── HERO ────────────────────────────────────────────────── */
 .hero { padding-top: 76px; min-height: 100vh; display: flex; flex-direction: column; }
 .hero-top {
   display: grid; grid-template-columns: 1fr auto 1fr;
@@ -249,7 +224,6 @@ img { display: block; max-width: 100%; }
 }
 .hero-message p { font-size: 1.05rem; color: var(--mid); line-height: 1.7; max-width: 380px; }
 
-/* ── SHARED BUTTON ───────────────────────────────────────── */
 .btn-primary {
   display: inline-flex; align-items: center; gap: 8px;
   background: var(--ink); color: var(--cream);
@@ -259,7 +233,6 @@ img { display: block; max-width: 100%; }
 }
 .btn-primary:hover { transform: translateY(-2px); background: var(--blue); }
 
-/* ── FOOTER ──────────────────────────────────────────────── */
 .footer { background: var(--ink); color: var(--cream); padding: 64px 48px 32px; }
 .footer-top {
   display: flex; justify-content: space-between; align-items: flex-start;
@@ -301,7 +274,11 @@ img { display: block; max-width: 100%; }
 .footer-bottom { display: flex; justify-content: space-between; font-size: .82rem; opacity: .5; }
 .footer-links { display: flex; gap: 24px; }
 
-/* ── RESPONSIVE ──────────────────────────────────────────── */
+.dark-mode .project-card img[src="/img/whisker.png"] {
+  content: url('/img/whisker-removebg-preview.png');
+  object-fit: contain;
+}
+
 @media (max-width: 900px) {
   .header { padding: 16px 24px; }
   .hero-top { grid-template-columns: 1fr auto; }
