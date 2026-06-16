@@ -138,6 +138,13 @@ export default {
   background-color: var(--cream);
   color: var(--ink);
 }
+html, body {
+  overflow-x: hidden; 
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 *, *::before, *::after { box-sizing: border-box; }
 body { font-family: 'Lato', sans-serif; background: var(--cream); color: var(--ink); transition: background .3s, color .3s; }
 a { text-decoration: none; color: inherit; cursor: pointer; }
