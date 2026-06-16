@@ -48,7 +48,7 @@
         <div class="info-card yellow">
           <div class="info-icon">📍</div>
           <h3>Location</h3>
-          <p>San Miguel, Bulacan<br>Philippines</p>
+          <p>San Miguel, Bulacan<br>Philippines 3011</p>
         </div>
         <div class="info-card red">
           <div class="info-icon">🔗</div>
