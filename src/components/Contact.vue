@@ -74,7 +74,7 @@
         <span class="tile-icon">✉️</span>
         <span class="tile-label">Email Me</span>
       </a>
-      <a href="https://whisker-wash.vercel.app" target="_blank" class="connect-tile" style="background: var(--yellow-lt);">
+      <a href="https://whiskerwash.vercel.app" target="_blank" class="connect-tile" style="background: var(--yellow-lt);">
         <span class="tile-icon">🐾</span>
         <span class="tile-label">WhiskerWash Live</span>
       </a>
