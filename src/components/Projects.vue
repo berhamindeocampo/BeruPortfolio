@@ -1,223 +1,258 @@
 <template>
-  <section id="projects" class="projects-section">
-
-    <div class="section-header">
-      <h2>Pampering the Web with<br>Featured Projects</h2>
-      <p>A selection of projects I've built — from pet care apps to data tools.</p>
-    </div>
-
-    <div class="projects-grid">
-      <div
-        v-for="project in projects"
-        :key="project.id"
-        class="project-card"
-      >
-        <div class="project-image">
-          <img v-if="project.img" :src="project.img" :alt="project.title" class="project-img" />
-          <span v-else>{{ project.icon }}</span>
-        </div>
-        <h3>{{ project.title }}</h3>
-        <p>{{ project.description }}</p>
-        <div class="tech-pills">
-          <span v-for="tech in project.tech" :key="tech" class="pill">{{ tech }}</span>
-        </div>
-        <div class="project-links">
-          <a v-if="project.github" :href="project.github" target="_blank" rel="noopener" class="btn-outline">
-            GitHub <span>↗</span>
-          </a>
-          <a v-if="project.demo" :href="project.demo" target="_blank" rel="noopener" class="btn-outline btn-outline--filled">
-            Live Demo <span>↗</span>
-          </a>
+  <section class="projects-section">
+    <h2 class="section-title">Featured Projects</h2>
+    
+    <div class="carousel-container">
+      <div class="slide" ref="slide">
+        <div 
+          v-for="(project, index) in projects" 
+          :key="index"
+          class="item"
+          :style="{ backgroundImage: `url(${project.img})` }"
+        >
+          <div class="overlay"></div>
+          <div class="content">
+            <div class="name">{{ project.title }}</div>
+            <div class="des">{{ project.description }}</div>
+          </div>
         </div>
       </div>
-    </div>
 
+      <div class="buttons">
+        <button class="prev" @click="prevSlide"></button>
+        <button class="next" @click="nextSlide"></button>
+      </div>
+    </div>
   </section>
 </template>
 
-<script>
-export default {
-  name: 'Projects',
-  data() {
-    return {
-      projects: [
-        {
-          id: 1,
-          title: 'Whisker Wash',
-          description: 'Pet care multi-page web application with booking, product catalog, AI chatbot powered by Google Gemini, blog, and testimonials.',
-          img: '/img/whisker.png',
-          tech: ['HTML', 'CSS', 'JavaScript', 'Gemini API'],
-          github: 'https://github.com/berhamindeocampo/WhiskerWash',
-          demo: 'https://whiskerwash.vercel.app'
-        },
-        {
-          id: 2,
-          title: 'Earthquake Event Recorder',
-          description: 'Python desktop app using Tkinter for logging and managing earthquake records. Auto-calculates safety alerts by magnitude and supports JSON import/export.',
-          img: '/img/earthquake.png',
-          tech: ['Python', 'Tkinter'],
-          github: 'https://github.com/berhamindeocampo/Earthquake-Event-Recorder'
-        },
-        {
-          id: 3,
-          title: 'Beru Portfolio',
-          description: 'My portfolio.',
-          icon: '📱',
-          tech: ['Vue.js', 'HTML', 'JavaScript'],
-          github: 'https://github.com/berhamindeocampo/BeruPortfolio',
-        }
-      ]
-    }
-  }
-}
+<script setup>
+import { ref, onMounted } from 'vue';
+
+const slide = ref(null);
+
+const projects = [
+  {
+    title: "Whisker Wash",
+    description: "AI-powered pet care platform with grooming booking and health tracking.",
+    img: "/img/image.png"
+  },
+  {
+    title: "Earthquake Event Recorder",
+    description: "Real-time earthquake monitoring and recording system built with Python & Tkinter.",
+    img: "/img/eer.png"
+  },
+  {
+    title: "Beru Portfolio",
+    description: "Modern Vue.js developer portfolio with smooth animations.",
+    img: "/img/beruportfolio.png"
+  },
+];
+
+const nextSlide = () => {
+  const items = document.querySelectorAll('.item');
+  if (items.length) slide.value?.appendChild(items[0]);
+};
+
+const prevSlide = () => {
+  const items = document.querySelectorAll('.item');
+  if (items.length) slide.value?.prepend(items[items.length - 1]);
+};
+
+// Scroll Animation + Auto Slide
+onMounted(() => {
+  // Auto slide every 6.5 seconds
+  setInterval(nextSlide, 6500);
+
+  // Intersection Observer for fade-in animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+      }
+    });
+  }, { threshold: 0.2 });
+
+  observer.observe(document.querySelector('.projects-section'));
+});
 </script>
 
 <style scoped>
 .projects-section {
-  padding: 72px 48px;
-  background: var(--white);
-  border-top: 1px solid var(--border);
-  transition: background .3s, border-color .3s;
+  padding: 80px 5% 120px;
+  background: #0a0a0a;
+  color: white;
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 0.9s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
-.section-header {
+.projects-section.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-title {
   text-align: center;
-  margin-bottom: 52px;
+  font-size: 48px;
+  margin-bottom: 70px;
+  font-family: "H7GBK-Heavy", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 4px;
 }
 
-.section-header h2 {
-  font-family: 'Bayon', sans-serif;
-  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-  line-height: 1.1;
-  margin-bottom: 14px;
-}
-
-.section-header p {
-  color: var(--mid);
-  font-size: 1rem;
-  max-width: 480px;
-  margin: 0 auto;
-  line-height: 1.7;
-  transition: color .3s;
-}
-
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
-}
-
-.project-card {
-  background: var(--cream);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
+.carousel-container {
+  position: relative;
   width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-  padding: 28px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  transition: transform .2s, box-shadow .2s, background .3s, border-color .3s;
-}
-
-.project-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 36px rgba(0,0,0,.09);
-}
-
-.project-image {
-  height: 160px;
-  border-radius: 10px;
-  background: var(--white);
-  border: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3.5rem;
+  height: 100vh;
+  max-height: 720px;
   overflow: hidden;
-  transition: background .3s, border-color .3s;
+  border-radius: 12px;
 }
 
-.project-img {
+.slide {
+  position: relative;
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  padding: 8px;
 }
 
-h3 {
-  font-family: 'Bayon', sans-serif;
-  font-size: 1.3rem;
-  letter-spacing: .02em;
+.item {
+  width: 180px;
+  height: 280px;
+  position: absolute;
+  top: 50%;
+  left: 15%;
+  transform: translate(-50%, -50%) scale(0.85);
+  border-radius: 24px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #151212;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+  z-index: 1;
 }
 
-p {
-  font-size: .9rem;
-  color: var(--mid);
-  line-height: 1.65;
-  flex: 1;
-  transition: color .3s;
-}
-
-.tech-pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.pill {
-  font-size: .75rem;
-  padding: 4px 12px;
-  border-radius: 20px;
-  background: var(--blue-lt);
-  color: var(--blue);
-  font-weight: 700;
-  transition: background .3s;
-}
-
-.project-links {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.btn-outline {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  border: 1.5px solid var(--ink);
-  border-radius: 30px;
-  padding: 8px 18px;
-  font-size: .82rem;
-  font-weight: 700;
-  transition: background .2s, color .2s, border-color .2s;
-}
-
-.btn-outline:hover {
-  background: var(--ink);
-  color: var(--cream);
-}
-
-.btn-outline--filled {
-  background: var(--blue);
-  border-color: var(--blue);
-  color: #fff;
-}
-
-.btn-outline--filled:hover {
-  background: #2a5bbf;
-  border-color: #2a5bbf;
-  color: #fff;
-}
-
-@media (max-width: 900px) {
-  .projects-section { padding: 48px 24px; }
-  .projects-grid { grid-template-columns: 1fr; gap: 16px; }
-}
-
-.project-card {
+.item:nth-child(1),
+.item:nth-child(2) {
+  top: 0;
+  left: 0;
+  transform: none;
   width: 100%;
-  box-sizing: border-box;
+  height: 100%;
+  border-radius: 0;
+  z-index: 2;
 }
-</style>
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.8));
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.item:nth-child(2) .overlay {
+  opacity: 1;
+}
+
+.content {
+  position: absolute;
+  top: 50%;
+  left: 80px;
+  width: 420px;
+  text-align: left;
+  color: white;
+  transform: translateY(-50%);
+  font-family: "H7GBK-Heavy", sans-serif;
+  display: none;
+  z-index: 3;
+}
+
+.item:nth-child(2) .content {
+  display: block;
+}
+
+.name {
+  font-size: 52px;
+  line-height: 1.05;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  text-shadow: 0 4px 12px rgba(0,0,0,0.9);
+}
+
+.des {
+  font-size: 17.5px;
+  line-height: 1.5;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+}
+
+.buttons {
+  position: absolute;
+  bottom: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  gap: 30px;
+}
+
+button {
+  width: 58px;
+  height: 48px;
+  border: none;
+  background: transparent;
+  background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+button:hover { transform: scale(1.15); }
+
+.prev { background-image: url('https://codetheworld.io/wp-content/uploads/2024/05/prev.png'); }
+.next { background-image: url('https://codetheworld.io/wp-content/uploads/2024/05/next.png'); }
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .projects-section { padding: 80px 0 80px; }
+
+  .section-title { font-size: 30px; margin-bottom: 40px; letter-spacing: 2px; }
+
+  .carousel-container {
+    height: auto;
+    max-height: none;
+    aspect-ratio: 3 / 4;
+    border-radius: 0;
+  }
+
+  /* Side preview card has no room on mobile — hide it */
+  .item:nth-child(n+3) {
+    display: none;
+  }
+
+  .content {
+    left: 24px;
+    right: 24px;
+    width: auto;
+    top: auto;
+    bottom: 96px;
+    transform: none;
+  }
+
+  .name { font-size: 30px; }
+  .des  { font-size: 14px; }
+
+  .buttons { bottom: 32px; gap: 20px; }
+
+  button { width: 44px; height: 36px; }
+}
+
+@media (max-width: 480px) {
+  .carousel-container { aspect-ratio: 3 / 4.4; }
+  .name { font-size: 24px; }
+  .content { left: 16px; right: 16px; bottom: 88px; }
+}
+</style>  
