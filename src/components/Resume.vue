@@ -149,21 +149,21 @@ export default {
       ],
       experience: [
         {
-          year: '2025',
+          year: '2026',
           role: 'WhiskerWash — Vanilla HTML, CSS & JavaScript',
           company: 'Personal Project',
           desc: 'Built a multi-page pet care web app with AI chatbot (Gemini API), booking system, product catalog, and blog.',
           accent: '#4CAF50'
         },
         {
-          year: '2024',
+          year: '2025',
           role: 'Earthquake Event Recorder — Python & Tkinter',
           company: 'Academic Project',
           desc: 'Developed a Python/Tkinter desktop app for logging earthquake events with magnitude-based safety alerts and JSON I/O.',
           accent: '#3B6FD4'
         },
         {
-          year: '2025',
+          year: '2026',
           role: 'BeruPortfolio — Vue Developer',
           company: 'Personal Project',
           desc: 'Designed and built this portfolio using Vue 3, Vite.',
