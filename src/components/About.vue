@@ -1,155 +1,169 @@
 <template>
-  <section id="about" class="about-strip">
-
-    <!-- LEFT: image/avatar side -->
-    <div class="about-image-side">
-      <div class="avatar-circle">
-        <img
-          v-if="profileImg"
-          :src="profileImg"
-          alt="Berhamin de Ocampo"
-          class="profile-img"
-        />
-        <span v-else>👨‍💻</span>
+  <section class="about-section" id="about">
+    <div class="about-container">
+      <div class="profile">
+        <img src="/img/beruchisa.jpg" alt="Berhamin de Ocampo" class="profile-img" />
       </div>
-    </div>
-
-    <!-- RIGHT: text side -->
-    <div class="about-text-side">
-      <h2>PASSIONATE CODE FOR EVERY PROJECT AND PIXEL.</h2>
-      <p>
-        Hi! I'm Berhamin de Ocampo! A software developer from San Miguel, Bulacan, Philippines.
-        I specialize in front-end development and love crafting elegant solutions to complex problems.
-      </p>
-      <a href="https://github.com/berhamindeocampo" target="_blank" class="btn-primary">
-        View GitHub <span>↗</span>
-      </a>
-
-      <div class="stats-row">
-        <div class="stat">
-          <h3>2+</h3>
-          <p>Public Repos</p>
-        </div>
-        <div class="stat">
-          <h3>2</h3>
-          <p>Years Coding</p>
-        </div>
-        <div class="stat">
-          <h3>100%</h3>
-          <p>Passion</p>
+      <div class="about-text">
+        <h2 class="section-title">About Me</h2>
+        <p class="description">
+          Hi, I'm <span class="highlight">Berhamin de Ocampo</span>, 
+          a passionate Front-End Developer from San Miguel, Bulacan. 
+          I love turning ideas into beautiful, interactive, and immersive web experiences.
+        </p>
+        <div class="stats">
+          <div class="stat-item">
+            <span class="number">2</span>
+            <span class="label">Years Experience</span>
+          </div>
+          <div class="stat-item">
+            <span class="number">3</span>
+            <span class="label">Public Repos</span>
+          </div>
+          <div class="stat-item">
+            <span class="number">∞</span>
+            <span class="label">Creativity</span>
+          </div>
         </div>
       </div>
     </div>
-
   </section>
 </template>
 
-<script>
-export default {
-  name: 'About',
-  data() {
-    return {
-      profileImg: '/img/beruchisa.jpg'
-    }
-  }
-}
+<script setup>
+import { onMounted } from 'vue';
+
+onMounted(() => {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+      }
+    });
+  }, { threshold: 0.2 });
+
+  observer.observe(document.querySelector('.about-section'));
+});
 </script>
 
 <style scoped>
-.about-strip {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  border-top: 1px solid var(--border);
-  transition: border-color .3s;
+.about-section {
+  padding: 140px 5% 120px;
+  background: #0a0a0a;
+  color: white;
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 0.9s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
-.about-image-side {
-  background: var(--cream);
-  padding: 48px;
-  object-fit: cover;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 420px;
-  transition: background .3s, border-color .3s;
+.about-section.active {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.avatar-circle {
-  width: 500px;
-  height: 500px;
-  border-radius: 50%;
-  background: var(--yellow-lt);
-  border: 4px solid var(--yellow);
+.about-container {
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 5rem;
-  overflow: hidden;
-  transition: background .3s;
+  gap: 100px;
+  flex-wrap: wrap;
 }
 
 .profile-img {
-  width: 100%;
-  height: 100%;
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
   object-fit: cover;
+  border: 8px solid #ffcc00;
+  box-shadow: 0 0 60px rgba(255, 204, 0, 0.4);
+  transition: transform 0.6s ease;
 }
 
-.about-text-side {
-  background: var(--cream);
-  padding: 52px 56px;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  justify-content: center;  
+.profile-img:hover {
+  transform: scale(1.05);
 }
 
-h2 {
-  font-family: 'Bayon', sans-serif;
-  font-size: clamp(1.8rem, 3vw, 2.6rem);
-  line-height: 1.1;
+.about-text {
+  flex: 1;
+  min-width: 320px;
 }
 
-p {
-  color: var(--mid);
+.section-title {
+  font-size: 52px;
+  margin-bottom: 30px;
+  font-family: "H7GBK-Heavy", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.highlight {
+  color: #ffcc00;
+}
+
+.description {
+  font-size: 19px;
   line-height: 1.75;
-  font-size: 1rem;
-  transition: color .3s;
+  margin-bottom: 50px;
+  color: #ddd;
+  max-width: 580px;
 }
 
-.stats-row {
+.stats {
   display: flex;
-  gap: 32px;
-  margin-top: 16px;
-  padding-top: 24px;
-  border-top: 1px solid var(--border);
+  gap: 60px;
+  flex-wrap: wrap;
 }
 
-.stat h3 {
-  font-family: 'Bayon', sans-serif;
-  font-size: 2.2rem;
-  color: var(--blue);
+.stat-item {
+  text-align: center;
 }
 
-.stat p {
-  font-size: .82rem;
-  color: var(--mid);
-  margin-top: 2px;
+.number {
+  display: block;
+  font-size: 42px;
+  font-weight: bold;
+  color: #ffcc00;
+  font-family: "H7GBK-Heavy", sans-serif;
 }
 
-@media (max-width: 900px) {
-  .about-strip { grid-template-columns: 1fr; }
+.label {
+  font-size: 15px;
+  text-transform: uppercase;
+  opacity: 0.75;
+  letter-spacing: 1px;
+}
 
-  .avatar-circle {
-    width: 300px; 
-    height: 300px;
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .about-section { padding: 110px 5% 80px; }
+
+  .about-container {
+    flex-direction: column;
+    gap: 40px;
+    text-align: center;
+    align-items: center;
   }
 
-  .about-image-side {
-    min-height: 260px;
-    border-right: none;
-    border-bottom: 1px solid var(--border);
+  .profile-img {
+    width: 220px;
+    height: 220px;
   }
-  .about-text-side { padding: 36px 24px; }
-  .stats-row { flex-wrap: wrap; gap: 20px; }
+
+  .about-text { min-width: unset; width: 100%; }
+
+  .section-title { font-size: 36px; }
+
+  .description { font-size: 16px; max-width: 100%; }
+
+  .stats { justify-content: center; gap: 32px; }
+
+  .number { font-size: 32px; }
+}
+
+@media (max-width: 480px) {
+  .profile-img { width: 170px; height: 170px; }
+  .section-title { font-size: 28px; }
+  .stats { gap: 20px; }
 }
 </style>
