@@ -1,4 +1,4 @@
-# Berhamin de Ocampo - Portfolio
+# Berhamin de Ocampo | Portfolio
 
 A modern, responsive portfolio website built with **Vue 3** and **Vite**. This template showcases your projects, skills, and provides a way for visitors to get in touch.
 
@@ -192,7 +192,3 @@ Feel free to fork this project and submit pull requests for any improvements.
 If you have questions or suggestions, please open an issue on GitHub.
 
 ---
-
-**Made with ❤️ by Joshua Macapagal**
-
-Visit: https://github.com/macapagaljoshua123
