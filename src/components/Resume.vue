@@ -126,38 +126,38 @@ export default {
       slideLabels: ['Education', 'Experience', 'Profile & Resume'],
       education: [
         {
-          year: '2022 – Present',
+          year: '2023 – Present',
           degree: 'BS Computer Science',
-          school: 'Your University Name',
+          school: 'St. Paul University at San Miguel',
           desc: 'Focusing on software engineering, web development, data structures, and algorithms.',
           accent: '#3B6FD4'
         },
         {
-          year: '2018 – 2022',
-          degree: 'Senior High School – STEM',
-          school: 'Your Senior High School',
-          desc: 'Science, Technology, Engineering, and Mathematics strand with focus on programming fundamentals.',
+          year: '2021 – 2023',
+          degree: 'Senior High School – GAS',
+          school: 'John J. Russell Senior High School',
+          desc: 'Enrolled in General Academic Strand curriculum, because I am undecided to which program I would choose.',
           accent: '#F5C842'
         },
         {
-          year: '2014 – 2018',
+          year: '2017 – 2021',
           degree: 'Junior High School',
-          school: 'Your Junior High School',
-          desc: 'Developed early interest in computers and technology.',
+          school: 'John J. Russell Memorial High School',
+          desc: 'Not yet interested in technology but I have an interest in arts and animation.',
           accent: '#E8594A'
         }
       ],
       experience: [
         {
           year: '2025',
-          role: 'WhiskerWash — Full Stack Dev',
+          role: 'WhiskerWash — Vanilla HTML, CSS & JavaScript',
           company: 'Personal Project',
           desc: 'Built a multi-page pet care web app with AI chatbot (Gemini API), booking system, product catalog, and blog.',
           accent: '#4CAF50'
         },
         {
           year: '2024',
-          role: 'Earthquake Event Recorder',
+          role: 'Earthquake Event Recorder — Python & Tkinter',
           company: 'Academic Project',
           desc: 'Developed a Python/Tkinter desktop app for logging earthquake events with magnitude-based safety alerts and JSON I/O.',
           accent: '#3B6FD4'
@@ -166,7 +166,7 @@ export default {
           year: '2025',
           role: 'BeruPortfolio — Vue Developer',
           company: 'Personal Project',
-          desc: 'Designed and built this portfolio using Vue 3, Vite, and a Wuthering Waves-inspired dark cinematic slider.',
+          desc: 'Designed and built this portfolio using Vue 3, Vite.',
           accent: '#F5C842'
         }
       ]
