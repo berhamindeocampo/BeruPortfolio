@@ -2,7 +2,7 @@
   <section class="about-section" id="about">
     <div class="about-container">
       <div class="profile">
-        <img src="/img/beruchisa.jpg" alt="Berhamin de Ocampo" class="profile-img" />
+        <img src="/img/beruchisa.jpg" alt="Berhamin de Ocampo" class="profile-img" title="Chisa has a potential?" />
       </div>
       <div class="about-text">
         <h2 class="section-title">About Me</h2>
