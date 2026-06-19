@@ -143,7 +143,7 @@ const projects = [
     ],
     icons: [
       { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg',          label: 'Vue 3' },
-      { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg',            label: 'CSS3' },
+      { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg',            label: 'HTML5' },
       { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg', label: 'JavaScript' },
     ],
     github: 'https://github.com/berhamindeocampo/BeruPortfolio',
