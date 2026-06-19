@@ -101,7 +101,7 @@ const projects = [
     type: 'WEB APP',
     stack: 'HTML · CSS · JavaScript · Gemini AI',
     description: 'AI-powered pet care platform with grooming booking, product catalog, blog, and a Gemini-powered chatbot assistant.',
-    img: '/img/image.png',
+    img: '/img/whisker-dog.png',
     langs: [
       { name: 'HTML', pct: 57.9, color: '#e34c26' },
       { name: 'CSS',        pct: 32.6, color: '#e07b53' },
@@ -120,7 +120,7 @@ const projects = [
     type: 'DESKTOP APP',
     stack: 'Python · Tkinter · JSON',
     description: 'Real-time earthquake monitoring and recording system built with Python & Tkinter. Supports JSON import/export.',
-    img: '/img/eer.png',
+    img: '/img/eeeer.png',
     langs: [
       { name: 'Python', pct: 100, color: '#3572A5' },
     ],
@@ -131,11 +131,11 @@ const projects = [
     vercel: null,
   },
   {
-    title: 'Beru Portfolio',
+    title: 'BeruPortfolio',
     type: 'WEB APP',
     stack: 'Vue 3 · Vite · CSS3',
     description: 'Modern Vue.js developer portfolio with smooth animations, project showcases, and full responsiveness.',
-    img: '/img/beru.png',
+    img: '/img/beru-portfolio.png',
     langs: [
       { name: 'Vue',        pct: 94.2, color: '#41b883' },
       { name: 'HTML',        pct: 5.2, color: '#e34c26' },
