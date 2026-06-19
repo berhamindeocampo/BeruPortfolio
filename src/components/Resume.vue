@@ -39,7 +39,7 @@
               </div>
             </div>
           </div>
-          <a href="/resume.pdf" download="Berhamin_de_Ocampo_Resume.pdf" class="download-btn">
+          <a href="/Berhamin_de_Ocampo_Resume.pdf" download="Berhamin_de_Ocampo_Resume.pdf" class="download-btn">
             Download Resume ↓
           </a>
         </div>
