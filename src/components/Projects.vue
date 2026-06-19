@@ -120,7 +120,7 @@ const projects = [
     type: 'DESKTOP APP',
     stack: 'Python · Tkinter · JSON',
     description: 'Real-time earthquake monitoring and recording system built with Python & Tkinter. Supports JSON import/export.',
-    img: '/img/eeeer.png',
+    img: '/img/eeeer  .png',
     langs: [
       { name: 'Python', pct: 100, color: '#3572A5' },
     ],

@@ -3,7 +3,7 @@
 
     <!-- HEADER -->
     <header class="header" :class="{ scrolled: hasScrolled }">
-      <div class="logo-text">Berhamin<span class="dot">.</span></div>
+      <div class="logo-text">Berhamin de Ocampo<span class="dot">.</span></div>
       <nav class="desktop-nav">
         <a @click="goTo('about')">About</a>
         <a @click="goTo('skills')">Skills</a>
