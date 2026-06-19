@@ -52,7 +52,6 @@
           <div class="resume-tag">// EDUCATION</div>
           <h2 class="resume-name">ACADEMIC<br>BACKGROUND</h2>
           <p class="resume-des">My formal training in Computer Science and technology.</p>
-
           <div class="timeline">
             <div class="timeline-item" v-for="edu in education" :key="edu.school">
               <div class="timeline-dot" :style="{ background: edu.accent }"></div>
@@ -74,7 +73,6 @@
           <div class="resume-tag">// EXPERIENCE</div>
           <h2 class="resume-name">WORK &amp;<br>PROJECTS</h2>
           <p class="resume-des">Hands-on experience building real-world applications.</p>
-
           <div class="timeline">
             <div class="timeline-item" v-for="exp in experience" :key="exp.role">
               <div class="timeline-dot" :style="{ background: exp.accent }"></div>
@@ -176,41 +174,33 @@ export default {
     shift(direction) {
       const slider = this.$refs.slider
       const items = Array.from(slider.querySelectorAll('.resume-item'))
-
-      // FIRST: record current positions + their natural (CSS-driven) transforms
       const firstRects = items.map(el => el.getBoundingClientRect())
 
-      // reorder the DOM
       if (direction === 'next') {
         slider.appendChild(items[0])
       } else {
         slider.prepend(items[items.length - 1])
       }
 
-      // LAST: positions after reorder (new layout, but starting from old rects)
       requestAnimationFrame(() => {
         const lastRects = items.map(el => el.getBoundingClientRect())
-
         items.forEach((el, i) => {
           const wasHidden = firstRects[i].width === 0 && firstRects[i].height === 0
-          const isHidden = lastRects[i].width === 0 && lastRects[i].height === 0
+          const isHidden  = lastRects[i].width  === 0 && lastRects[i].height  === 0
           if (wasHidden || isHidden) return
-
           const dx = firstRects[i].left - lastRects[i].left
-          const dy = firstRects[i].top - lastRects[i].top
+          const dy = firstRects[i].top  - lastRects[i].top
           if (dx || dy) {
             const naturalTransform = getComputedStyle(el).transform
             const base = naturalTransform === 'none' ? '' : naturalTransform
             el.style.transition = 'none'
-            el.style.transform = `${base} translate(${dx}px, ${dy}px)`
+            el.style.transform  = `${base} translate(${dx}px, ${dy}px)`
           }
         })
-
-        // INVERT applied — now force a reflow and PLAY back to natural position
         requestAnimationFrame(() => {
           items.forEach(el => {
             el.style.transition = ''
-            el.style.transform = ''
+            el.style.transform  = ''
           })
         })
       })
@@ -219,12 +209,8 @@ export default {
         ? (this.activeIndex + 1) % this.slideLabels.length
         : (this.activeIndex - 1 + this.slideLabels.length) % this.slideLabels.length
     },
-    next() {
-      this.shift('next')
-    },
-    prev() {
-      this.shift('prev')
-    },
+    next()  { this.shift('next') },
+    prev()  { this.shift('prev') },
     goTo(index) {
       const diff = index - this.activeIndex
       if (diff === 0) return
@@ -241,19 +227,22 @@ export default {
   src: url('https://hw-media-cdn-mingchao.kurogame.com/font/H7GBK-Heavy.ttf');
 }
 
-/* ── SECTION ─────────────────────────────────── */
+/* ══ SECTION ════════════════════════════════════ */
 .resume-section {
   position: relative;
   width: 100%;
   height: 100vh;
+  min-height: 600px;
+  max-height: 900px;        /* ← caps height so it never overflows viewport */
   background: #0b0b0e;
   overflow: hidden;
 }
 
+/* ── Background photo ──────────────────────────── */
 .bg-photo {
   position: absolute;
   inset: 0;
-  background-image: './img/beruchisa.jpg';
+  background-image: url('/img/beruchisa.jpg');
   background-size: cover;
   background-position: center 15%;
   background-repeat: no-repeat;
@@ -281,24 +270,25 @@ export default {
   inset: 0;
   background:
     radial-gradient(ellipse at 15% 50%, rgba(59,111,212,.12) 0%, transparent 55%),
-    radial-gradient(ellipse at 85% 30%, rgba(245,200,66,.07) 0%, transparent 55%);
+    radial-gradient(ellipse at 85% 30%, rgba(245,200,66,.07)  0%, transparent 55%);
   pointer-events: none;
   z-index: 1;
 }
 
-/* ── SLIDER ──────────────────────────────────── */
+/* ══ SLIDER ═════════════════════════════════════ */
 .resume-slider {
   position: absolute;
   inset: 0;
 }
 
+/* ── All side/hidden cards ─────────────────────── */
 .resume-item {
-  width: 165px;
-  height: 250px;
+  width: 160px;
+  height: 240px;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  border-radius: 20px;
+  border-radius: 18px;
   display: inline-block;
   transition: .5s cubic-bezier(.4,0,.2,1);
   border: 1px solid rgba(255,255,255,.07);
@@ -312,6 +302,7 @@ export default {
   background: linear-gradient(135deg, rgba(255,255,255,.03) 0%, transparent 60%);
 }
 
+/* ── Active slide (1st & 2nd child = full-screen) ─ */
 .resume-item:nth-child(1),
 .resume-item:nth-child(2) {
   top: 0; left: 0;
@@ -321,30 +312,57 @@ export default {
   border: none;
 }
 
-.resume-item:nth-child(3) { left: 70%; }
-.resume-item:nth-child(4) { left: calc(70% + 210px); }
-.resume-item:nth-child(5) { left: calc(80% + 430px); }
-.resume-item:nth-child(n+6) { left: calc(80% + 650px); opacity: 0; }
+/* ── Side preview cards — pushed right of content ─
+   Content ends at ~560px from left (60px pad + 500px wide).
+   Cards start at 62% so they never overlap content.       */
+.resume-item:nth-child(3) { left: 62%; }
+.resume-item:nth-child(4) { left: calc(62% + 196px); }
+.resume-item:nth-child(5) { left: calc(62% + 392px); }
+.resume-item:nth-child(n+6) { left: calc(62% + 588px); opacity: 0; }
 
-/* Slide backgrounds */
-.slide-summary    { background: linear-gradient(135deg, #0d1220 0%, #080b18 100%); }
+/* ── Slide backgrounds ─────────────────────────── */
+.slide-summary {
+  background: #0d1220;
+  background-image: url('/img/beruchisa.jpg');
+  background-size: cover;
+  background-position: center 20%;
+  background-repeat: no-repeat;
+}
+
+.resume-item:nth-child(2).slide-summary {
+  background-image:
+    linear-gradient(90deg,
+      #0b0b0e 0%,
+      #0b0b0e 28%,
+      rgba(11,11,14,.85) 42%,
+      rgba(11,11,14,.4)  58%,
+      rgba(11,11,14,.1)  70%,
+      transparent 100%
+    ),
+    url('/img/beruchisa.jpg');
+  background-size: cover, cover;
+  background-position: center, right center;
+  background-repeat: no-repeat, no-repeat;
+}
+
 .slide-education  { background: linear-gradient(135deg, #0d1a0d 0%, #080e08 100%); }
 .slide-experience { background: linear-gradient(135deg, #1a100d 0%, #100808 100%); }
 
-/* ── MAIN CONTENT ────────────────────────────── */
+/* ══ MAIN CONTENT ════════════════════════════════ */
 .resume-content {
   display: none;
   position: absolute;
   top: 50%;
   left: 60px;
   transform: translateY(-50%);
-  width: 500px;
+  width: 480px;
+  max-width: calc(58% - 60px);   /* never wider than left portion */
   color: #fff;
 }
 
 .resume-item:nth-child(2) .resume-content { display: block; }
 
-/* Mini card content (side-slot cards only) */
+/* ── Mini card label (side cards only) ────────── */
 .mini-content {
   display: flex;
   position: absolute;
@@ -353,22 +371,23 @@ export default {
   align-items: center;
   justify-content: center;
   color: rgba(255,255,255,.3);
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: 700;
-  gap: 8px;
+  gap: 6px;
   line-height: 1.4;
   text-align: center;
   opacity: 0;
   transform: translateY(18px);
   pointer-events: none;
   transition: opacity .45s ease .15s, transform .45s cubic-bezier(.4,0,.2,1) .15s;
+  background: linear-gradient(to top, rgba(0,0,0,.55) 0%, rgba(0,0,0,.1) 45%, rgba(0,0,0,.45) 100%);
 }
-
 .resume-item:nth-child(n+3) .mini-content {
   opacity: 1;
   transform: translateY(0);
 }
 
+/* ── Typography ────────────────────────────────── */
 .resume-tag {
   font-family: 'Lato', monospace;
   font-size: .72rem;
@@ -381,7 +400,7 @@ export default {
 
 .resume-name {
   font-family: "H7GBK-Heavy", 'Lato', sans-serif;
-  font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+  font-size: clamp(2rem, 3.8vw, 3.6rem);
   line-height: 1;
   margin-bottom: 14px;
   text-shadow: 0 0 40px rgba(255,255,255,.12);
@@ -390,21 +409,21 @@ export default {
 }
 
 .resume-des {
-  font-size: .88rem;
+  font-size: .86rem;
   line-height: 1.7;
   color: rgba(255,255,255,.55);
   max-width: 420px;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   opacity: 0;
   animation: wuwa-in .9s ease forwards .2s;
 }
 
-/* ── META ROW ────────────────────────────────── */
+/* ── Meta row ──────────────────────────────────── */
 .resume-meta {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-bottom: 28px;
+  gap: 9px;
+  margin-bottom: 24px;
   opacity: 0;
   animation: wuwa-in .9s ease forwards .3s;
 }
@@ -416,15 +435,15 @@ export default {
 }
 
 .meta-icon {
-  width: 34px; height: 34px;
+  width: 32px; height: 32px;
   border-radius: 8px;
   background: rgba(255,255,255,.08);
   display: flex; align-items: center; justify-content: center;
-  font-size: .95rem; flex-shrink: 0;
+  font-size: .9rem; flex-shrink: 0;
 }
 
 .meta-label {
-  font-size: .68rem;
+  font-size: .66rem;
   text-transform: uppercase;
   letter-spacing: .12em;
   color: rgba(255,255,255,.35);
@@ -432,12 +451,12 @@ export default {
 }
 
 .meta-val {
-  font-size: .85rem;
+  font-size: .83rem;
   font-weight: 700;
   color: rgba(255,255,255,.8);
 }
 
-/* ── DOWNLOAD BTN ────────────────────────────── */
+/* ── Download button ───────────────────────────── */
 .download-btn {
   display: inline-flex;
   align-items: center;
@@ -447,8 +466,8 @@ export default {
   color: #f5c842;
   font-family: 'Lato', sans-serif;
   font-weight: 700;
-  font-size: .9rem;
-  padding: 12px 26px;
+  font-size: .88rem;
+  padding: 11px 24px;
   border-radius: 40px;
   cursor: pointer;
   backdrop-filter: blur(8px);
@@ -457,17 +476,16 @@ export default {
   opacity: 0;
   animation: wuwa-in .9s ease forwards .45s;
 }
-
 .download-btn:hover { background: rgba(245,200,66,.28); }
 
-/* ── TIMELINE ────────────────────────────────── */
+/* ── Timeline ──────────────────────────────────── */
 .timeline {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 18px;
   opacity: 0;
   animation: wuwa-in .9s ease forwards .3s;
-  max-height: 55vh;
+  max-height: 50vh;
   overflow-y: auto;
   padding-right: 8px;
   scrollbar-width: thin;
@@ -476,7 +494,7 @@ export default {
 
 .timeline-item {
   display: flex;
-  gap: 16px;
+  gap: 14px;
   align-items: flex-start;
 }
 
@@ -491,37 +509,37 @@ export default {
 .timeline-body { flex: 1; }
 
 .tl-year {
-  font-size: .7rem;
+  font-size: .68rem;
   letter-spacing: .14em;
   color: rgba(255,255,255,.35);
   text-transform: uppercase;
-  margin-bottom: 3px;
+  margin-bottom: 2px;
 }
 
 .tl-title {
   font-family: "H7GBK-Heavy", 'Lato', sans-serif;
-  font-size: 1rem;
+  font-size: .95rem;
   color: #fff;
   margin-bottom: 2px;
 }
 
 .tl-sub {
-  font-size: .78rem;
+  font-size: .76rem;
   color: rgba(245,200,66,.6);
-  margin-bottom: 5px;
+  margin-bottom: 4px;
   letter-spacing: .04em;
 }
 
 .tl-desc {
-  font-size: .82rem;
+  font-size: .8rem;
   color: rgba(255,255,255,.5);
   line-height: 1.6;
 }
 
-/* ── BUTTONS ─────────────────────────────────── */
+/* ══ NAV BUTTONS ════════════════════════════════ */
 .buttons {
   position: absolute;
-  bottom: 80px;
+  bottom: 72px;
   width: 100%;
   text-align: center;
   z-index: 10;
@@ -534,18 +552,18 @@ export default {
   background-repeat: no-repeat;
   background-size: contain;
   margin-inline: 20px;
-  cursor: pointer; transition: .3s;
+  cursor: pointer;
+  transition: .3s;
   -webkit-tap-highlight-color: transparent;
 }
-
 .prev { background-image: url('https://codetheworld.io/wp-content/uploads/2024/05/prev.png'); }
 .next { background-image: url('https://codetheworld.io/wp-content/uploads/2024/05/next.png'); }
 .prev:hover, .next:hover { transform: scale(1.15); }
 
-/* ── SLIDE DOTS ──────────────────────────────── */
+/* ══ SLIDE DOTS ═════════════════════════════════ */
 .slide-dots {
   position: absolute;
-  bottom: 36px;
+  bottom: 28px;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -554,10 +572,10 @@ export default {
 }
 
 .sdot {
-  font-size: .68rem;
+  font-size: .66rem;
   font-weight: 700;
   letter-spacing: .1em;
-  padding: 4px 14px;
+  padding: 4px 13px;
   border-radius: 20px;
   background: rgba(255,255,255,.08);
   color: rgba(255,255,255,.35);
@@ -565,125 +583,233 @@ export default {
   cursor: pointer;
   transition: all .3s;
 }
-
 .sdot.active {
   background: rgba(245,200,66,.2);
   border-color: rgba(245,200,66,.4);
   color: #f5c842;
 }
 
-/* ── SCROLL HINT ─────────────────────────────── */
+/* ══ SCROLL HINT ════════════════════════════════ */
 .scroll-hint {
   position: absolute;
   right: 40px;
-  bottom: 60px;
+  bottom: 56px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
   color: rgba(255,255,255,.25);
-  font-size: .68rem;
+  font-size: .66rem;
   letter-spacing: .18em;
   text-transform: uppercase;
   z-index: 10;
 }
 
 .hint-line {
-  width: 1px; height: 50px;
+  width: 1px; height: 44px;
   background: linear-gradient(to bottom, rgba(255,255,255,.3), transparent);
   animation: pulse 2s ease-in-out infinite;
 }
 
+/* ══ ANIMATIONS ═════════════════════════════════ */
 @keyframes pulse {
   0%, 100% { opacity: .3; }
-  50% { opacity: 1; }
+  50%       { opacity: 1; }
 }
 
 @keyframes wuwa-in {
   from { opacity: 0; transform: translateY(50px); filter: blur(16px); }
-  to   { opacity: 1; transform: translateY(0); filter: blur(0); }
+  to   { opacity: 1; transform: translateY(0);    filter: blur(0); }
 }
 
-/* ── RESPONSIVE ────────────────────────────────── */
+/* ══ RESPONSIVE — TABLET ════════════════════════ */
+@media (max-width: 1024px) {
+  .resume-content {
+    left: 40px;
+    width: 420px;
+    max-width: calc(56% - 40px);
+  }
+  .resume-item:nth-child(3) { left: 60%; }
+  .resume-item:nth-child(4) { left: calc(60% + 196px); }
+  .resume-item:nth-child(5) { left: calc(60% + 392px); }
+}
+
+/* ══ RESPONSIVE — MOBILE ════════════════════════ */
 @media (max-width: 768px) {
+
+  /* Section: auto height, scrolls naturally */
   .resume-section {
     height: auto;
-    min-height: 100vh;
-    overflow: visible;
-    padding: 100px 0 56px;
+    min-height: 100svh;
+    max-height: none;
+    overflow: hidden;
+    padding: 72px 0 120px;  /* top=navbar clearance, bottom=buttons+dots */
   }
 
+  /* Background: hide global bg-photo, each slide handles its own */
+  .bg-photo   { display: none; }
+  .bg-overlay { display: none; }
+
+  /* Slider: flow in document */
   .resume-slider {
     position: relative;
     inset: auto;
+    transform: translateZ(0);   /* own compositor layer */
   }
 
-  /* Side preview cards have no room on mobile — hide them */
-  .resume-item:nth-child(n+3) {
-    display: none;
-  }
+  /* Hide inactive slides */
+  .resume-item:nth-child(1),
+  .resume-item:nth-child(n+3) { display: none; }
 
-  .resume-item:nth-child(1) {
-    display: none;
-  }
-
+  /* Active slide: full width, height = content */
   .resume-item:nth-child(2) {
     position: relative;
     width: 100%;
     height: auto;
-    min-height: calc(100vh - 156px);
+    min-height: calc(100svh - 192px);
     border-radius: 0;
+    will-change: transform, opacity;
+    backface-visibility: hidden;
   }
 
+  /* Summary slide: local bg image + gradient */
+  .resume-item:nth-child(2).slide-summary {
+    background-image:
+      linear-gradient(to bottom,
+        rgba(11,11,14,.6)  0%,
+        rgba(11,11,14,.2) 18%,
+        rgba(11,11,14,.5) 38%,
+        #0b0b0e 60%,
+        #0b0b0e 100%
+      ),
+      url('/img/beruchisa.jpg');
+    background-size: cover, cover;
+    background-position: center, center top;
+    background-repeat: no-repeat, no-repeat;
+    background-attachment: scroll, scroll;
+  }
+
+  /* Content block */
   .resume-content {
     position: relative;
-    top: auto;
-    left: auto;
+    top: auto; left: auto;
     transform: none;
     width: 100%;
     max-width: 100%;
-    padding: 0 24px;
-    /* ADDED: margin on mobile for better spacing */
-    margin: 24px 0;
+    padding: 20px 22px 0;
+    margin: 0;
   }
 
-  .resume-name { font-size: 2.1rem; }
+  /* Typography scale-down */
+  .resume-name { font-size: 1.85rem; }
+  .resume-des  { font-size: .82rem; max-width: 100%; }
 
-  .resume-des {
-    max-width: 100%;
-    font-size: .85rem;
+  /* Timeline */
+  .timeline {
+    max-height: none;
+    overflow-y: visible;
+    padding-right: 0;
+    gap: 16px;
   }
 
-  .timeline { max-height: none; }
+  /* Animations: lighter on mobile */
+  @keyframes wuwa-in {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
 
+  .resume-tag   { animation-duration: .35s; animation-delay: 0s; }
+  .resume-name  { animation-duration: .4s;  animation-delay: .05s; }
+  .resume-des   { animation-duration: .4s;  animation-delay: .1s; }
+  .resume-meta  { animation-duration: .4s;  animation-delay: .14s; }
+  .timeline     { animation-duration: .4s;  animation-delay: .14s; }
+  .download-btn { animation-duration: .4s;  animation-delay: .2s; }
+
+  /* Download btn */
+  .download-btn {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(245,200,66,.2);
+    margin-top: 4px;
+  }
+
+  /* Nav buttons: corners of the section */
   .buttons {
-    position: relative;
-    bottom: auto;
-    margin-top: 32px;
-    padding: 0 24px;
+    position: absolute;
+    bottom: 72px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    text-align: left;       /* override center */
+    padding: 0;
+    pointer-events: none;
   }
+  .buttons .prev,
+  .buttons .next {
+    pointer-events: all;
+    position: absolute;
+    bottom: 0;
+    margin-inline: 0;
+  }
+  .buttons .prev { left: 16px; }
+  .buttons .next { right: 16px; }
 
+  /* Slide dots */
   .slide-dots {
-    position: relative;
-    bottom: auto;
-    margin-top: 20px;
+    position: absolute;
+    bottom: 20px;
     flex-wrap: wrap;
+    justify-content: center;
+    padding: 0 12px;
   }
+  .sdot { font-size: .6rem; padding: 3px 10px; }
 
   .scroll-hint { display: none; }
+  .hint-line   { animation: none; opacity: .3; }
+  .mini-content { transition: opacity .2s ease, transform .2s ease; }
 }
 
+/* ══ RESPONSIVE — SMALL MOBILE ══════════════════ */
 @media (max-width: 480px) {
-  .resume-section { padding: 90px 0 48px; }
-  .resume-content { 
-    padding: 0 18px; 
-    /* ADDED: margin on smaller screens */
-    margin: 20px 0;
+  .resume-section { padding: 68px 0 116px; }
+
+  .resume-content { padding: 16px 18px 0; }
+
+  .resume-name { font-size: 1.6rem; }
+  .resume-des  { font-size: .8rem; }
+
+  .meta-icon  { width: 28px; height: 28px; font-size: .8rem; }
+  .meta-val   { font-size: .78rem; }
+  .meta-label { font-size: .62rem; }
+
+  .download-btn { width: 100%; justify-content: center; font-size: .82rem; }
+
+  .tl-title { font-size: .88rem; }
+  .tl-desc  { font-size: .76rem; }
+
+  .sdot { font-size: .58rem; padding: 3px 8px; }
+
+  @keyframes wuwa-in {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
   }
-  .resume-name { font-size: 1.7rem; }
-  .resume-des { font-size: .82rem; }
-  .buttons { padding: 0 18px; }
-  .meta-val { font-size: .8rem; }
-  .download-btn { width: 100%; justify-content: center; }
+
+  .resume-tag,
+  .resume-name,
+  .resume-des,
+  .resume-meta,
+  .timeline,
+  .download-btn { animation-duration: .3s; animation-delay: 0s; }
+}
+
+/* ══ REDUCED MOTION ═════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  @keyframes wuwa-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  .hint-line    { animation: none; }
+  .mini-content { transition: none; }
+  .resume-item  { transition: none; }
 }
 </style>

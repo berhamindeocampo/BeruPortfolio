@@ -1,169 +1,209 @@
 <template>
-  <section class="about-section" id="about">
-    <div class="about-container">
-      <div class="profile">
-        <img src="/img/beruchisa.jpg" alt="Berhamin de Ocampo" class="profile-img" title="Chisa has a potential?" />
+  <section class="about-section" id="about" ref="sectionEl">
+    <div class="about-inner">
+
+      <!-- LEFT: Photo -->
+      <div class="photo-panel">
+        <img src="/img/beruchisa.jpg" alt="Berhamin de Ocampo" class="photo" />
+        <div class="photo-fade"></div>
       </div>
-      <div class="about-text">
-        <h2 class="section-title">About Me</h2>
-        <p class="description">
-          Hi, I'm <span class="highlight">Berhamin de Ocampo</span>, 
-          a passionate Front-End Developer from San Miguel, Bulacan. 
-          I love turning ideas into beautiful, interactive, and immersive web experiences.
+
+      <!-- RIGHT: Text -->
+      <div class="text-panel" :class="{ visible: isVisible }">
+        <p class="role-tag">FRONT-END DEVELOPER</p>
+
+        <h1 class="headline">
+         About Me...
+        </h1>
+
+        <p class="bio">
+          Hi, I'm <strong>Berhamin de Ocampo</strong> — a passionate Front-End Developer from San Miguel, Bulacan. I love turning ideas into beautiful, interactive, and immersive web experiences.
         </p>
-        <div class="stats">
-          <div class="stat-item">
-            <span class="number">2</span>
-            <span class="label">Years Experience</span>
-          </div>
-          <div class="stat-item">
-            <span class="number">3</span>
-            <span class="label">Public Repos</span>
-          </div>
-          <div class="stat-item">
-            <span class="number">∞</span>
-            <span class="label">Creativity</span>
-          </div>
-        </div>
       </div>
     </div>
   </section>
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
+import { ref, onMounted } from 'vue'
+
+const sectionEl  = ref(null)
+const isVisible  = ref(false)
 
 onMounted(() => {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('active');
-      }
-    });
-  }, { threshold: 0.2 });
-
-  observer.observe(document.querySelector('.about-section'));
-});
+  const observer = new IntersectionObserver(
+    ([entry]) => { if (entry.isIntersecting) isVisible.value = true },
+    { threshold: 0.15 }
+  )
+  if (sectionEl.value) observer.observe(sectionEl.value)
+})
 </script>
 
 <style scoped>
+/* ── SECTION ─────────────────────────────────── */
 .about-section {
-  padding: 140px 5% 120px;
   background: #0a0a0a;
-  color: white;
-  opacity: 0;
-  transform: translateY(60px);
-  transition: all 0.9s cubic-bezier(0.25, 0.1, 0.25, 1);
+  color: #fff;
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  align-items: stretch;
 }
 
-.about-section.active {
+.about-inner {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* ── PHOTO PANEL ─────────────────────────────── */
+.photo-panel {
+  position: relative;
+  flex: 0 0 48%;
+  overflow: hidden;
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  filter: grayscale(10%) brightness(0.85);
+}
+
+/* Right-edge fade into dark */
+.photo-fade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    transparent 50%,
+    #0a0a0a 100%
+  );
+}
+
+/* ── TEXT PANEL ──────────────────────────────── */
+.text-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 7% 80px 5%;
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity .8s ease, transform .8s ease;
+}
+.text-panel.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-.about-container {
-  max-width: 1200px;
-  margin: 0 auto;
+.role-tag {
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .2em;
+  color: #ffcc00;
+  margin: 0 0 20px;
+  text-transform: uppercase;
+}
+
+.headline {
+  font-size: clamp(2.4rem, 4.5vw, 4rem);
+  font-weight: 900;
+  line-height: 1.12;
+  margin: 0 0 28px;
+  color: #fff;
+  font-family: "H7GBK-Heavy", sans-serif;
+}
+
+.accent {
+  font-style: italic;
+  color: #ffcc00;
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+.bio {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: rgba(255,255,255,.6);
+  max-width: 460px;
+  margin: 0 0 40px;
+}
+
+/* ── CTA BUTTONS ─────────────────────────────── */
+.cta-row {
   display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
   align-items: center;
-  gap: 100px;
-  flex-wrap: wrap;
+  gap: 8px;
+  font-size: .82rem;
+  font-weight: 800;
+  letter-spacing: .1em;
+  padding: 14px 28px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: transform .2s, background .2s, box-shadow .2s;
+  cursor: pointer;
+}
+.btn:hover { transform: translateY(-2px); }
+
+.btn--primary {
+  background: #ffcc00;
+  color: #0a0a0a;
+  box-shadow: 0 4px 24px rgba(255,204,0,.35);
+}
+.btn--primary:hover {
+  background: #ffe033;
+  box-shadow: 0 6px 30px rgba(255,204,0,.55);
 }
 
-.profile-img {
-  width: 360px;
-  height: 360px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 8px solid #ffcc00;
-  box-shadow: 0 0 60px rgba(255, 204, 0, 0.4);
-  transition: transform 0.6s ease;
+.btn--ghost {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,.25);
+  color: #fff;
+}
+.btn--ghost:hover {
+  background: rgba(255,255,255,.08);
+  border-color: rgba(255,255,255,.5);
 }
 
-.profile-img:hover {
-  transform: scale(1.05);
+/* ── RESPONSIVE ──────────────────────────────── */
+@media (max-width: 900px) {
+  .photo-panel { flex: 0 0 42%; }
+  .text-panel { padding: 60px 5%; }
+  .headline { font-size: 2.2rem; }
 }
 
-.about-text {
-  flex: 1;
-  min-width: 320px;
-}
-
-.section-title {
-  font-size: 52px;
-  margin-bottom: 30px;
-  font-family: "H7GBK-Heavy", sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-}
-
-.highlight {
-  color: #ffcc00;
-}
-
-.description {
-  font-size: 19px;
-  line-height: 1.75;
-  margin-bottom: 50px;
-  color: #ddd;
-  max-width: 580px;
-}
-
-.stats {
-  display: flex;
-  gap: 60px;
-  flex-wrap: wrap;
-}
-
-.stat-item {
-  text-align: center;
-}
-
-.number {
-  display: block;
-  font-size: 42px;
-  font-weight: bold;
-  color: #ffcc00;
-  font-family: "H7GBK-Heavy", sans-serif;
-}
-
-.label {
-  font-size: 15px;
-  text-transform: uppercase;
-  opacity: 0.75;
-  letter-spacing: 1px;
-}
-
-/* ── Mobile ── */
 @media (max-width: 768px) {
-  .about-section { padding: 110px 5% 80px; }
+  .about-inner { flex-direction: column; min-height: auto; }
 
-  .about-container {
-    flex-direction: column;
-    gap: 40px;
-    text-align: center;
-    align-items: center;
+  .photo-panel {
+    flex: 0 0 auto;
+    height: 55vw;
+    max-height: 340px;
   }
 
-  .profile-img {
-    width: 220px;
-    height: 220px;
+  .photo-fade {
+    background: linear-gradient(
+      to bottom,
+      transparent 40%,
+      #0a0a0a 100%
+    );
   }
 
-  .about-text { min-width: unset; width: 100%; }
-
-  .section-title { font-size: 36px; }
-
-  .description { font-size: 16px; max-width: 100%; }
-
-  .stats { justify-content: center; gap: 32px; }
-
-  .number { font-size: 32px; }
+  .text-panel { padding: 32px 24px 60px; }
+  .headline { font-size: 2rem; }
+  .bio { font-size: .92rem; }
 }
 
 @media (max-width: 480px) {
-  .profile-img { width: 170px; height: 170px; }
-  .section-title { font-size: 28px; }
-  .stats { gap: 20px; }
+  .headline { font-size: 1.7rem; }
+  .btn { padding: 12px 20px; font-size: .78rem; }
 }
 </style>

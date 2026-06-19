@@ -45,7 +45,7 @@
       <div class="footer-top">
         <div class="footer-left">
           <div class="footer-logo">Berhamin<span class="dot">.</span></div>
-          <p class="footer-tagline">Front-End Developer &amp; Creative Coder<br>San Miguel, Bulacan, Philippines</p>
+          <p class="footer-tagline">Front-End Developer<br>San Miguel, Bulacan, Philippines</p>
         </div>
         <div class="footer-right">
           <div class="footer-nav-group">
@@ -72,11 +72,6 @@
       </div>
       <div class="footer-bottom">
         <p>© {{ currentYear }} Berhamin de Ocampo. All Rights Reserved.</p>
-        <div class="footer-socials">
-          <a href="https://github.com/berhamindeocampo" target="_blank">GitHub</a>
-          <a href="https://www.linkedin.com/in/berhamin-de-ocampo-b507a3404/" target="_blank">LinkedIn</a>
-          <a href="mailto:badeocampo28@gmail.com">Email</a>
-        </div>
       </div>
     </footer>
 

@@ -12,7 +12,7 @@
 <script setup>
 const skills = [
   'Vue.js', 'JavaScript', 'HTML5', 'CSS3', 'WordPress',
- 'Git & GitHub', 'Figma',  'C++', 'Java', 'Python',
+ 'Git & GitHub', 'Figma', 'Python',
 ];
 </script>
 
@@ -56,7 +56,7 @@ const skills = [
 }
 
 @media (max-width: 768px) {
-  .skills-section { padding: 80px 5% 80px; }
+  .skills-section { padding: 75px 5% 75px; }
   .section-title { font-size: 30px; margin-bottom: 40px; }
   .skill-card { padding: 14px 22px; font-size: 15px; }
 }

@@ -113,12 +113,15 @@ onMounted(() => {
   background: #0a0a0a;
   color: white;
   text-align: center;
+}
+
+.contact-section > * {
   opacity: 0;
   transform: translateY(60px);
   transition: all 0.9s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
-.contact-section.active {
+.contact-section.active > * {
   opacity: 1;
   transform: translateY(0);
 }
