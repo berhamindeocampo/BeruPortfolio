@@ -113,7 +113,7 @@ const projects = [
       { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg',          label: 'HTML5' },
     ],
     github: 'https://github.com/berhamindeocampo/WhiskerWash',
-    vercel: 'https://whisker-wash.vercel.app',
+    vercel: 'https://whiskerwash.vercel.app',
   },
   {
     title: 'Earthquake Event Recorder',
