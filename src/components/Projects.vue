@@ -135,7 +135,7 @@ const projects = [
     type: 'WEB APP',
     stack: 'Vue 3 · Vite · CSS3',
     description: 'Modern Vue.js developer portfolio with smooth animations, project showcases, and full responsiveness.',
-    img: '/img/beru-portfolio.png',
+    img: '/img/beru.png',
     langs: [
       { name: 'Vue',        pct: 94.2, color: '#41b883' },
       { name: 'HTML',        pct: 5.2, color: '#e34c26' },

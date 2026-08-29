@@ -12,7 +12,7 @@
 <script setup>
 const skills = [
   'Vue.js', 'JavaScript', 'HTML5', 'CSS3', 'WordPress',
- 'Git & GitHub', 'Figma', 'Python',
+ 'Git & GitHub', 'Figma', 'Python', 'TypeScript', 'Tailwind CSS',
 ];
 </script>
 

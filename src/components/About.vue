@@ -4,20 +4,20 @@
 
       <!-- LEFT: Photo -->
       <div class="photo-panel">
-        <img src="/img/beruchisa.jpg" alt="Berhamin de Ocampo" class="photo" />
+        <img src="/img/chisacute.jpg" alt="Berhamin de Ocampo" class="photo" />
         <div class="photo-fade"></div>
       </div>
 
       <!-- RIGHT: Text -->
       <div class="text-panel" :class="{ visible: isVisible }">
-        <p class="role-tag">FRONT-END DEVELOPER</p>
+        <p class="role-tag">FULL-STACK DEVELOPER</p>
 
         <h1 class="headline">
          About Me...
         </h1>
 
         <p class="bio">
-          Hi, I'm <strong>Berhamin de Ocampo</strong> — a passionate Front-End Developer from San Miguel, Bulacan. I love turning ideas into beautiful, interactive, and immersive web experiences.
+          Hi, I'm <strong>Berhamin de Ocampo</strong> — a passionate Full-Stack Developer from San Miguel, Bulacan. I love turning ideas into beautiful, interactive, and immersive web experiences.
         </p>
       </div>
     </div>

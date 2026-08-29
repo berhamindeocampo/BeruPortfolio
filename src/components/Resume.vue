@@ -808,8 +808,14 @@ export default {
     from { opacity: 0; }
     to   { opacity: 1; }
   }
-  .hint-line    { animation: none; }
-  .mini-content { transition: none; }
-  .resume-item  { transition: none; }
+  .hint-line  { 
+    animation: none;
+ }
+  .mini-content { 
+    transition: none; 
+  }
+  .resume-item  { 
+    transition: none; 
+  }
 }
 </style>
